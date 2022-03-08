@@ -1,0 +1,145 @@
+-- Question 1 --
+SELECT DISTINCT T1.BUILDING
+FROM
+(SELECT S1.COURSE_ID, S1.BUILDING
+FROM SECTION S1, SECTION S2
+WHERE S1.COURSE_ID = S2.COURSE_ID
+AND S1.YEAR != S2.YEAR
+AND S1.BUILDING = S2.BUILDING) T1,
+(SELECT S1.COURSE_ID, S1.BUILDING
+FROM SECTION S1, SECTION S2
+WHERE S1.COURSE_ID = S2.COURSE_ID
+AND S1.YEAR != S2.YEAR
+AND S1.BUILDING = S2.BUILDING) T2
+WHERE T1.BUILDING = T2.BUILDING
+AND T1.COURSE_ID != T2.COURSE_ID
+ORDER BY T1.BUILDING;
+
+-- Question 2 --
+SELECT COURSE_ID, TITLE
+FROM COURSE
+WHERE DEPT_NAME = 'Math'
+AND COURSE_ID NOT IN (SELECT PREREQ.COURSE_ID
+FROM PREREQ
+INNER JOIN COURSE P
+ON PREREQ.PREREQ_ID = P.COURSE_ID
+WHERE P.DEPT_NAME
+IN ('Music', 'Math', 'Finance', 'Cybernetics'))
+ORDER BY COURSE_ID;
+
+-- Question 3 --
+SELECT C.COURSE_ID, C.TITLE
+FROM COURSE C
+INNER JOIN
+(SELECT DISTINCT COURSE_ID
+FROM SECTION
+GROUP BY COURSE_ID
+HAVING (COUNT(DISTINCT BUILDING) + 3) <=
+(SELECT COUNT(DISTINCT BUILDING)
+FROM CLASSROOM)) S
+ON S.COURSE_ID = C.COURSE_ID
+WHERE C.TITLE LIKE 'D%'
+ORDER BY C.TITLE;
+
+-- Question 4 --
+SELECT DEPT_NAME
+FROM COURSE
+GROUP BY DEPT_NAME
+HAVING AVG(CREDITS) != SUM(CREDITS)/COUNT(DEPT_NAME);
+
+-- The two Averages can be different when there is a course with null credits such as the one in the Psychology department.  This happens because the avg() function does not include null values, while manually summing and counting adds the null courses to the denominator. --
+
+-- Question 5 --
+-- Part A --
+SELECT DISTINCT DEPARTMENT.BUILDING
+FROM DEPARTMENT
+LEFT OUTER JOIN SECTION
+ON SECTION.BUILDING = DEPARTMENT.BUILDING
+WHERE SECTION.BUILDING IS NULL
+ORDER BY DEPARTMENT.BUILDING;
+
+-- Part B --
+SELECT DISTINCT BUILDING
+FROM DEPARTMENT
+MINUS
+SELECT DISTINCT BUILDING
+FROM SECTION
+ORDER BY BUILDING;
+
+-- Part C --
+SELECT DISTINCT BUILDING
+FROM DEPARTMENT
+WHERE NOT EXISTS
+(SELECT DISTINCT BUILDING
+FROM SECTION
+WHERE DEPARTMENT.BUILDING = SECTION.BUILDING)
+ORDER BY BUILDING;
+
+-- Question 6 --
+-- Yes or No depending on if ‘Packard’ is the section Building that was added.  Yes (results are the same): Packard is being used for classes elsewhere, so it is already being excluded from the results of the 3 queries and a new null tuple wouldn't affect this.  No (results are different): All three queries look at the building and if they exist in both tables, so since a building name is included within the null tuple, it would be taken into consideration and if the added building was one unused elsewhere in section, such as ‘Grace,’ it would change the results. --
+
+-- Question 7 --
+-- Part A --
+create table mathsection(course_id varchar (8),
+sec_id varchar (8),
+semester varchar (6) check (semester in
+('Fall', 'Winter', 'Spring', 'Summer')),
+year numeric (4,0) check (year > 1701 and year < 2100),
+building varchar (15),
+room_number varchar (7),
+time_slot_id varchar (4),
+primary key (course_id, sec_id, semester, year));
+
+create table mathstudent
+(ID varchar (5),
+name varchar (20) not null,
+dept_name varchar (20),
+tot_cred numeric (3,0) check (tot_cred >= 0),
+primary key (ID));
+
+create table mathtakes
+(ID varchar (5),
+course_id varchar (8),
+sec_id varchar (8),
+semester varchar (6),
+year numeric (4,0),
+grade varchar (2),
+primary key (ID, course_id, sec_id, semester, year),
+foreign key (course_id, sec_id, semester, year) references mathsection
+on delete cascade,
+foreign key (ID) references mathstudent
+on delete cascade);
+
+-- Part B --
+INSERT INTO MATHSECTION
+(SELECT section.*
+FROM section
+inner join course
+on section.course_id = course.COURSE_ID
+WHERE course.DEPT_NAME = 'Math');
+
+INSERT INTO MATHSTUDENT
+(SELECT *
+FROM student
+WHERE student.DEPT_NAME = 'Math');
+
+INSERT INTO MATHTAKES
+(SELECT distinct takes.*
+FROM takes
+INNER JOIN MATHSTUDENT
+ON takes.ID = MATHSTUDENT.ID
+INNER JOIN MATHSECTION
+ON takes.COURSE_ID = MATHSECTION.COURSE_ID);
+
+-- Part C --
+INSERT INTO MATHSTUDENT 
+VALUES (2, 'Duo', 'Math', 420);
+
+-- Part D --
+INSERT INTO MATHTAKES
+(SELECT 2 as ID, COURSE_ID, SEC_ID, SEMESTER, YEAR, 'F-' as GRADE
+FROM MATHSECTION
+WHERE (COURSE_ID BETWEEN 200 AND 299)
+AND MATHSECTION.YEAR = 2006
+AND SEMESTER = 'Spring'
+AND SEC_ID = 1);

@@ -1,0 +1,9 @@
+public class EnterpriseManager {
+    View theView;
+    DataConnect dc;
+
+    public EnterpriseManager(View theView, DataConnect dc) {
+        this.theView = theView;
+        this.dc = dc;
+    }
+}

@@ -1,0 +1,44 @@
+import java.sql.SQLException;
+
+public class jjs220 {
+    private static View theView;
+    //private static DataConnect dc;
+    private static String option;
+
+    public static void main(String[] args) {
+        theView = new View();
+        theView.print("Enter Oracle Password: ");
+        DataConnect dc = new DataConnect();
+        while (!dc.makeConnection("J$chinto98"/*theView.readInput()*/)) { 
+            //TODO Remove Password
+            theView.println("Login Failed.  Try Again?  (Y/N)");
+            if (theView.readYN().equals("N")) {
+                theView.println("Exiting.");
+                return;
+            }
+        }
+        theView.println("Connection made successfully!");
+        try{
+            System.out.println("3: "+dc.getConnection().isClosed()+"");
+            }catch(SQLException se){}
+        option = theView.readChoice("Choose an interface: ", "Online Customer", "In-store Customer",
+                "Enterprise Manager", "Store Manager");
+
+        if (option.equals("0")) {
+            try{
+                System.out.println("1: "+dc.getConnection().isClosed()+"");
+                }catch(SQLException se){}
+            new OnlineCustomer(theView, dc);
+            try{
+                System.out.println("2: "+dc.getConnection().isClosed()+"");
+                }catch(SQLException se){}
+        }
+        else {
+            theView.println("Interface not implemented yet.  Exiting.");
+        }
+
+        theView.println("Closing Connection.");
+        dc.closeConnection();
+    }
+
+}

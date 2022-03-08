@@ -1,0 +1,84 @@
+/*
+Name: Jake Schinto
+Email: jjs220@lehigh.edu
+Class: cse 264-010
+Assignment: 5, Word Search
+*/
+html {
+    background-color: rgb(215, 255, 252);
+    color: rgb(167, 70, 45);
+}
+h1 {
+    color: black;
+}
+#manager {
+    margin-right: 2%;
+    text-align: center;
+    max-width: 63%; 
+    max-height: 100%;
+    overflow: auto;
+    border: 1px solid rgb(136, 51, 29); 
+}
+.gridspace {
+    min-width: 16px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    color: black;
+}
+.left {
+    float: left;
+}
+#register {
+    padding: 5px;
+    border: solid black 1px;
+    display: inline-block;
+    color: black;
+    background-color: rgb(253, 242, 248);
+}
+#sub {
+    margin-top: 7px;
+    margin-bottom: 7px;
+}
+.removeMarg {
+    margin-top: -3px;
+    margin-bottom: -3px;
+}
+#reg {
+    margin-left: 10px;
+}
+#theme {
+    margin-top: -17px;
+    margin-left: 5px;
+}
+.selected {
+    border: 1px solid black !important;
+    background-color: rgb(253, 131, 104) !important;
+    color: black !important;
+    font-weight: bolder;
+}
+.claimed {
+    background-color: rgb(250, 228, 228);
+    color: black;
+    border: 1px solid #B34C32;
+    font-weight: bold;
+}
+#score {
+    margin-right: 10px;
+}
+#rightCol {
+    color: black;
+    max-width: 34%;
+    height: 100%;
+    overflow: auto;
+}
+#score, #words {
+    background-color: rgb(239, 235, 255);
+    margin-bottom: 1px;
+}
+th {
+    background-color: rgb(198, 204, 255);
+}
+#container {
+    height: 85vh;
+    width: 100%;
+}

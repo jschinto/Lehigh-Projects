@@ -1,0 +1,11 @@
+program shorttest;
+var 
+  a, b : integer;
+begin
+  a := 4;
+  b := 0;
+  if (b <> 0) and (a div b = 2) then
+    printf("%d %d\n", a, b);
+  else 
+    printf("Wow, avoided a div by 0! %d %d", a, b);
+end.

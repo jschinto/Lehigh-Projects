@@ -1,0 +1,14 @@
+== Homework 10 ==
+
+== Question 1 ==
+a. 4 runs will be produced (or 5 including the sorted output)
+b. {1, 10, 11}, {1, 5, 90}, {2, 10}
+
+== Question 2 ==
+Since <T1 commit> is in the log file, Redo(T1) will need to occur for T1 to be updated with the new value.  Next, since T0 is started, but there is no abort or commit following it, Undo(T0) will be ran to recover from the system crash.  This would restore T0 values to revert to its old values.
+
+== Question 3 ==
+Since the two relations are not sorted, using a merge-join would require the algorithm to sort first and then merge, which requires excess recourses.  A better join algorithm would be Hash join.  A hash join is useful when joining unsorted lists and can be more efficient than a merge-join.
+
+== Question 4 ==
+All tuples where h(tr[C]) = h(ts[C]) will be compared to see if C is the same in both tuples.  Both relations are processed through the hash function and split into partitions.  Matching partitions, meaning matching hash outputs {h(tr[C]) = h(ts[C])}, are then compared to see if a join should be made.

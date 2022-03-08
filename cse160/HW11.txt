@@ -1,0 +1,22 @@
+Homework 11
+Jake Schinto
+
+a.      Predicted
+            True   False
+Actual      _____________
+      True |  90  |  10  |
+           |______|______|
+     False |  60  |  40  |
+           |______|______|
+
+b. It corresponds to expected profit because as stated in the passage before the curves, "For that purpose we use a profit curve, which incorporates assumptions aboutcosts and benefits and displays expected value."  Therefore the profit curves show the expected values for profit and can be used to help guide obtaining maximum overall profit.
+
+c. You would use additive smoothing or the Laplace Correction to correct the p(e_i).  So, 1/1000 => (1+1)/(1000+1) = (2/1001) = 0.001998 instead of the original .001
+
+d. 1000 spam and 9000 not spam
+lift(x) = p(x|c)/p(x) = p("free"|spam)/p("free")
+p("free"|spam) = 50/1000 = .05
+p("free") = 100/10000 = .01
+lift("free") = .05/.01 = 5
+
+e. IDF(X) = 1 + log(200 / 20) = 1 + log(10) = 1 + 1 = 2

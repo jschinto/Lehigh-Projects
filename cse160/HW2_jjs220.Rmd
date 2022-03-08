@@ -1,0 +1,57 @@
+---
+title: "Homework 2"
+output:
+  html_document:
+    df_print: paged
+---
+
+Instructions: Submit an R notebook that does what each of the following questions requires.
+
+NOTE: Make sure you are submitting the R Notebook, not the HTML file that this would generate.  The file extension will be a .Rmd
+
+1) Write a comment with your name, the date and the homework assignment name "HW2".  This will be expected of most R assignments in the future. (0.5 pt)
+```{r}
+# Jake Schinto - 1/29/20 - HW2
+```
+
+
+2) Write an R expression (no loops or assignments) that shows the average body weight of the female cats in the "cats" dataset.  The load of the library that contains the "cats" dataset is provided.  (2 pts)
+```{r}
+library(MASS)
+mean(cats[cats$Sex == "F", 2,])
+
+```
+
+
+3) Using the seq() function, write an expression that generates a vector containing the values (-4, 1.5, 7.0, 12.5, 18.0)  (2 pts)
+```{r}
+seq(from = -4, to = 18, by = 5.5)
+```
+
+
+4) Show the set of R commands that would create a vector of character strings that represent the locations of the classes that you are taking.  For example, the strings in your vector might be "Rauch 184," "Steps 101," "Rauch 060," and "Whitaker 303." Assign the classname that meets there (e.g., "CSE160") as the name for each position of the vector.  (0.5 pts)
+```{r}
+v <- c("Rauch 261", "Maginnes 290", "Neville 001")
+names(v) <- c("MGT301", "MATH312", "CSE160")
+v
+```
+
+
+5) Show the expression using the vector you created in #4 that would display the meeting location for CSE160, regardless of where CSE160 is in your vector. Do not use a loop. (1 pt)
+```{r}
+v["CSE160"]
+```
+
+
+6) Show the expression that produces the vector of class codes in your schedule from #4 EXCEPT for CSE160. Do not use a loop. (2 pts)
+```{r}
+setdiff(names(v), "CSE160")
+```
+
+7) Using the provided vector, provide code that would produce three comma-separated values from the vector: the minimum, the median, and the maximum.  This has to be generated programatically (you can not just calculate these values by hand and print out the corresponding vector).  E.g for the vector c(1, 2, 3, 4, 5) the result will output "1, 3, 5". (2 pts)
+```{r}
+vector <- c(133.130219, 132.22319, 130.812653, 153.723282, 124.999298, 117.746117, 118.290627, 116.763412, 132.961868, 131.779541, 140.638748, 141.427536, 135.600342, 135.04184, 124.310944, 121.856476, 105.877823, 135.43721, 144.251053, 147.603439, 112.307724, 129.810013, 125.087288, 134.321198, 132.608734, 140.332169, 140.010818, 139.984406, 155.188583, 140.900116, 142.225311, 141.717285, 161.165863, 156.075058, 143.661835, 138.132843, 139.218826, 130.928864, 130.812302, 132.68721, 151.21312, 110.04641, 119.983032, 109.748711, 145.360672, 143.121918, 135.220978, 133.279465, 131.760971, 136.693756, 139.648239, 144.157669, 129.782883, 134.918777, 137.819733, 137.009018, 125.511147, 136.294083, 146.513687, 135.529999)
+paste(min(vector),median(vector),max(vector),sep = ", ")
+
+```
+

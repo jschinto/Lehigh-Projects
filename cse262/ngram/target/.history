@@ -1,0 +1,31 @@
+run
+run hi
+run hello
+run hello world
+run
+run hi
+exit
+run
+exit
+run texts/gettysburg.txt
+run ../texts/gettysburg.txt
+run texts/gettysburg.txt
+run gettysburg.txt
+run pride.txt
+run gettysburg.txt
+run pride.txt
+run gettysburg.txt
+exit
+run gettysburg.txt
+run pride.txt
+run gettysburg.txt
+run pride.txt
+run gettysburg.txt
+run pride.txt
+run gettysburg.txt
+run pride.txt
+exit
+run gettysburg.txt
+run pride.txt
+output.txt << run pride.txt
+exit

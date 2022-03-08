@@ -1,0 +1,4 @@
+run states.txt
+clear
+exit
+run states.txt

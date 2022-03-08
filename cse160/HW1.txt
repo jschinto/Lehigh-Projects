@@ -1,0 +1,22 @@
+Homework 1 - Jake Schinto
+
+1. FALSE TRUE FALSE TRUE TRUE FALSE
+
+2. "X" "Y" "1" "2" "3"
+
+3. -2 -1 0 1 2
+
+4. TRUE
+
+5. FALSE
+
+6. #
+
+7. install.packages(“MASS”);
+library(“MASS”);
+cats #Shows cats data with cats
+
+8a. g
+8b. h
+8c. e
+8d. f

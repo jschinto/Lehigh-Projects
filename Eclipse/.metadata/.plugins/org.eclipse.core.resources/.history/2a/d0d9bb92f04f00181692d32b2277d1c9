@@ -1,0 +1,23 @@
+public class EnterpriseManager {
+    View theView;
+    DataConnect dc;
+
+    public EnterpriseManager(View theView, DataConnect dc) {
+        this.theView = theView;
+        this.dc = dc;
+        run();
+    }
+    
+    private void run() {
+        theView.println("Hello Enterprise Managers!");
+        mainMenu();
+    }
+
+    private String[] mainoptions = {"Purchase online inventory", "Business performance"};
+    private void mainMenu() {
+        // TODO Auto-generated method stub
+        theView.readChoice("What would you like to do?", mainoptions);
+        
+    }
+    
+}

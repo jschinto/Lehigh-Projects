@@ -1,0 +1,10 @@
+== Homework 9 ==
+
+== Question 1 ==
+1. The Block is Read onto main memory.
+2. The corresponding Parity block is Read onto main memory.
+3. Query updates the Block and Parity and writes the block back on the disk.
+4. The updated Parity is written onto the Parity Block corresponding with the block written to previously.
+
+== Question 2, 3, 4 ==
+See Drawings

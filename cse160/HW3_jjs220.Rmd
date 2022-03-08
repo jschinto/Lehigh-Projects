@@ -1,0 +1,59 @@
+---
+title: "Homework 3"
+output: html_notebook
+---
+
+Comment with your name, the date and the homework assignment name "HW3"
+```{r}
+#Jake Schinto, 2/7/2020, HW3
+```
+
+
+1) Replicate the dataframe, icecreamShop, and its strucutre below using your knowledge of dataframes, row names, and ordered factors and dates.  Your output should exactly match the following two lines of R code. (4 points) 
+
+> icecreamShop # (LINE 1)
+           firstName    lastName      age    jobLevel     jobTitle            startDate
+1702       Clutch       Mountainhawk  35     boss         CEO                 2017-05-18
+1703       Madeline     Doe           27     fulltime     Programmer          2017-05-29
+1604       Abby         Gail          22     parttime     Secretary           2018-01-02
+1705       Ben          Baker         31     fulltime     Business MGR        2017-11-13
+1709       Lafayette    Leopard       23     parttime     Intern              2018-05-29
+
+> str(icecreamShop) # (LINE 2)
+'data.frame':	5 obs. of  6 variables:
+ $ firstName: Factor w/ 5 levels "Abby","Ben","Clutch",..
+ $ lastName : Factor w/ 5 levels "Baker","Doe",..
+ $ age      : num  35 27 22 31 23
+ $ jobLevel : Ord.factor w/ 3 levels "parttime"<"fulltime"<..
+ $ jobTitle : Factor w/ 5 levels "Business MGR",..
+ $ startDate: Date, format: "2017-05-18" "2017-05-29" ...
+
+```{r}
+firstName <- c("Clutch", "Madeline", "Abby", "Ben", "Lafayette");
+lastName <- c("Mountainhawk", "Doe", "Gail", "Baker", "Leopard");
+age <- c(35, 27, 22, 31, 23);
+jobLevel <- c("boss", "fulltime", "parttime", "fulltime", "parttime");
+jobLevel <- factor(jobLevel, c("parttime", "fulltime", "boss"), ordered=TRUE);
+jobTitle <- c("CEO", "Programmer", "Secretary", "Business MGR", "Intern");
+startDate <- as.Date(c("2017-05-18", "2017-05-29", "2018-01-02", "2017-11-13", "2018-05-29"));
+rowNames <- c(1702, 1703, 1604, 1705, 1709);
+icecreamShop <- data.frame(firstName, lastName, age, jobLevel, jobTitle, startDate, row.names = rowNames);
+icecreamShop;
+str(icecreamShop);
+```
+
+
+2) Write code to create a new vector in the same dataframe as question #1 containing the number of years younger each person is than the oldest person in icecreamShop.  That is, the oldest person would have an entry in this vector with the value 0, and everyone younger would have a larger entry value. (3 points)
+
+```{r}
+icecreamShop$yearsYounger <- max(icecreamShop$age) - icecreamShop$age;
+icecreamShop;
+```
+
+
+3) Write an expression (meaning only one line and no semicolons) that counts the number of people in icecreamShop who work part time.  (3 points)
+
+```{r}
+nrow(subset(icecreamShop, jobLevel=="parttime"))
+```
+

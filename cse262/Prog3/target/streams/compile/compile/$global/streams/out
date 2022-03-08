@@ -1,0 +1,7 @@
+[0m[[0m[31merror[0m] [0m[0m/Users/jake/Documents/cse262/Prog3/src/main/scala/Prog3.scala:51:7: not found: value ITOD[0m
+[0m[[0m[31merror[0m] [0m[0m  add(ITOD)[0m
+[0m[[0m[31merror[0m] [0m[0m      ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/jake/Documents/cse262/Prog3/src/main/scala/Prog3.scala:53:7: not found: value ITOD[0m
+[0m[[0m[31merror[0m] [0m[0m  add(ITOD)[0m
+[0m[[0m[31merror[0m] [0m[0m      ^[0m
+[0m[[0m[31merror[0m] [0m[0mtwo errors found[0m

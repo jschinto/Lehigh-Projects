@@ -1,0 +1,7 @@
+[0m[[0m[31merror[0m] [0m[0m/Users/jake/Documents/cse262/AsaCompiler0/src/main/scala/CodeGenerator.scala:277:17: ':' expected but ',' found.[0m
+[0m[[0m[31merror[0m] [0m[0m    def andOp(x2, texp, tx2) = {[0m
+[0m[[0m[31merror[0m] [0m[0m                ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/jake/Documents/cse262/AsaCompiler0/src/main/scala/CodeGenerator.scala:383:3: identifier expected but '}' found.[0m
+[0m[[0m[31merror[0m] [0m[0m  }  [0m
+[0m[[0m[31merror[0m] [0m[0m  ^[0m
+[0m[[0m[31merror[0m] [0m[0mtwo errors found[0m

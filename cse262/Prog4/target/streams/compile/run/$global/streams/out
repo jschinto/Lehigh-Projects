@@ -1,0 +1,92 @@
+[0m[[0m[0mdebug[0m] [0m[0mjavaOptions: List(-Xverify:all)[0m
+[0m[[0m[0minfo[0m] [0m[0mRunning (fork) AsaCompiler shorttest.asa[0m
+[0m[[0m[0minfo[0m] [0m[0m===== CST ======[0m
+[0m[[0m[0minfo[0m] [0m[0m(program program shorttest ; (block var (variable_declaration a , b : (atype integer)) ; (compound_statement begin (statement (assignment_statement (lhsreference (identifier a)) := (logicalexpression (relationalexpression (simpleexpression (term (factor (literal (integerLiteral 4))))))) ;)) (statement (assignment_statement (lhsreference (identifier b)) := (logicalexpression (relationalexpression (simpleexpression (term (factor (literal (integerLiteral 0))))))) ;)) (statement (if_statement if (logicalexpression (relationalexpression (simpleexpression (term (factor ( (logicalexpression (relationalexpression (simpleexpression (term (factor (rhsvalue (identifier b))))) <> (simpleexpression (term (factor (literal (integerLiteral 0))))))) ))))) and (relationalexpression (simpleexpression (term (factor ( (logicalexpression (relationalexpression (simpleexpression (term (factor (rhsvalue (identifier a))) div (factor (rhsvalue (identifier b))))) = (simpleexpression (term (factor (literal (integerLiteral 2))))))) )))))) then (statement (printf_statement printf ( (simpleexpression (term (factor (literal "%d %d\n")))) , (simpleexpression (term (factor (rhsvalue (identifier a))))) , (simpleexpression (term (factor (rhsvalue (identifier b))))) ) ;)) else (statement (printf_statement printf ( (simpleexpression (term (factor (literal "Wow, avoided a div by 0! %d %d")))) , (simpleexpression (term (factor (rhsvalue (identifier a))))) , (simpleexpression (term (factor (rhsvalue (identifier b))))) ) ;)))) end)) .)[0m
+[0m[[0m[0minfo[0m] [0m[0m====== AST ======[0m
+[0m[[0m[0minfo[0m] [0m[0mProgram(shorttest,Block(List(),List(VarDecl(List(a, b),Type(NamedType(integer)))),CompoundStatement(List(AssignmentStatement(VariableReference(a,Location(5,2)),Literal(4,INTEGER_TYPE,Location(5,7))), AssignmentStatement(VariableReference(b,Location(6,2)),Literal(0,INTEGER_TYPE,Location(6,7))), IfStatement(Binop(AND,Binop(NOTEQUALTO,VariableReference(b,Location(7,6)),Literal(0,INTEGER_TYPE,Location(7,11))),Binop(EQUALS,Binop(DIV,VariableReference(a,Location(7,19)),VariableReference(b,Location(7,25))),Literal(2,INTEGER_TYPE,Location(7,29)))),PrintfStatement(Literal(%d %d[0m
+[0m[[0m[0minfo[0m] [0m[0m,STRING_TYPE,Location(8,11)),List(VariableReference(a,Location(8,22)), VariableReference(b,Location(8,25)))),Some(PrintfStatement(Literal(Wow, avoided a div by 0! %d %d,STRING_TYPE,Location(10,11)),List(VariableReference(a,Location(10,45)), VariableReference(b,Location(10,48))))))))))[0m
+[0m[[0m[0minfo[0m] [0m[0mSymbol Table[0m
+[0m[[0m[0minfo[0m] [0m[0mNAME	KIND		TYPE		VALUE	VINDEX[0m
+[0m[[0m[0minfo[0m] [0m[0ma	VAR_KIND	INTEGER_TYPE	0	0[0m
+[0m[[0m[0minfo[0m] [0m[0mb	VAR_KIND	INTEGER_TYPE	0	1[0m
+[0m[[0m[0minfo[0m] [0m[0mCode[0m
+[0m[[0m[0minfo[0m] [0m[0mCLASS(shorttest,Set(PUBLIC))[0m
+[0m[[0m[0minfo[0m] [0m[0mMETHOD(main,Set(PUBLIC, STATIC),([Ljava/lang/String;)V)[0m
+[0m[[0m[0minfo[0m] [0m[0mICONST_0[0m
+[0m[[0m[0minfo[0m] [0m[0mISTORE(0)[0m
+[0m[[0m[0minfo[0m] [0m[0mICONST_0[0m
+[0m[[0m[0minfo[0m] [0m[0mISTORE(1)[0m
+[0m[[0m[0minfo[0m] [0m[0mLDC(4)[0m
+[0m[[0m[0minfo[0m] [0m[0mISTORE(0)[0m
+[0m[[0m[0minfo[0m] [0m[0mLDC(0)[0m
+[0m[[0m[0minfo[0m] [0m[0mISTORE(1)[0m
+[0m[[0m[0minfo[0m] [0m[0mILOAD(1)[0m
+[0m[[0m[0minfo[0m] [0m[0mLDC(0)[0m
+[0m[[0m[0minfo[0m] [0m[0mIF_ICMPNE(#8)[0m
+[0m[[0m[0minfo[0m] [0m[0mICONST_0[0m
+[0m[[0m[0minfo[0m] [0m[0mGOTO(#9)[0m
+[0m[[0m[0minfo[0m] [0m[0mLABEL(#8)[0m
+[0m[[0m[0minfo[0m] [0m[0mICONST_1[0m
+[0m[[0m[0minfo[0m] [0m[0mLABEL(#9)[0m
+[0m[[0m[0minfo[0m] [0m[0mIFNE(#6)[0m
+[0m[[0m[0minfo[0m] [0m[0mICONST_0[0m
+[0m[[0m[0minfo[0m] [0m[0mGOTO(#7)[0m
+[0m[[0m[0minfo[0m] [0m[0mLABEL(#6)[0m
+[0m[[0m[0minfo[0m] [0m[0mICONST_1[0m
+[0m[[0m[0minfo[0m] [0m[0mILOAD(0)[0m
+[0m[[0m[0minfo[0m] [0m[0mILOAD(1)[0m
+[0m[[0m[0minfo[0m] [0m[0mIDIV[0m
+[0m[[0m[0minfo[0m] [0m[0mLDC(2)[0m
+[0m[[0m[0minfo[0m] [0m[0mIF_ICMPEQ(#14)[0m
+[0m[[0m[0minfo[0m] [0m[0mICONST_0[0m
+[0m[[0m[0minfo[0m] [0m[0mGOTO(#15)[0m
+[0m[[0m[0minfo[0m] [0m[0mLABEL(#14)[0m
+[0m[[0m[0minfo[0m] [0m[0mICONST_1[0m
+[0m[[0m[0minfo[0m] [0m[0mLABEL(#15)[0m
+[0m[[0m[0minfo[0m] [0m[0mIAND[0m
+[0m[[0m[0minfo[0m] [0m[0mLABEL(#7)[0m
+[0m[[0m[0minfo[0m] [0m[0mIFEQ(#5)[0m
+[0m[[0m[0minfo[0m] [0m[0mGETSTATIC(java/lang/System,out,Ljava/io/PrintStream;)[0m
+[0m[[0m[0minfo[0m] [0m[0mLDC(%d %d[0m
+[0m[[0m[0minfo[0m] [0m[0m)[0m
+[0m[[0m[0minfo[0m] [0m[0mBIPUSH(2)[0m
+[0m[[0m[0minfo[0m] [0m[0mANEWARRAY(java/lang/Object)[0m
+[0m[[0m[0minfo[0m] [0m[0mDUP[0m
+[0m[[0m[0minfo[0m] [0m[0mBIPUSH(0)[0m
+[0m[[0m[0minfo[0m] [0m[0mILOAD(0)[0m
+[0m[[0m[0minfo[0m] [0m[0mINVOKESTATIC(java/lang/Integer,valueOf,(I)Ljava/lang/Integer;)[0m
+[0m[[0m[0minfo[0m] [0m[0mAASTORE[0m
+[0m[[0m[0minfo[0m] [0m[0mDUP[0m
+[0m[[0m[0minfo[0m] [0m[0mBIPUSH(1)[0m
+[0m[[0m[0minfo[0m] [0m[0mILOAD(1)[0m
+[0m[[0m[0minfo[0m] [0m[0mINVOKESTATIC(java/lang/Integer,valueOf,(I)Ljava/lang/Integer;)[0m
+[0m[[0m[0minfo[0m] [0m[0mAASTORE[0m
+[0m[[0m[0minfo[0m] [0m[0mDUP[0m
+[0m[[0m[0minfo[0m] [0m[0mPOP[0m
+[0m[[0m[0minfo[0m] [0m[0mINVOKEVIRTUAL(java/io/PrintStream,printf,(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/PrintStream;)[0m
+[0m[[0m[0minfo[0m] [0m[0mPOP[0m
+[0m[[0m[0minfo[0m] [0m[0mGOTO(#30)[0m
+[0m[[0m[0minfo[0m] [0m[0mLABEL(#5)[0m
+[0m[[0m[0minfo[0m] [0m[0mGETSTATIC(java/lang/System,out,Ljava/io/PrintStream;)[0m
+[0m[[0m[0minfo[0m] [0m[0mLDC(Wow, avoided a div by 0! %d %d)[0m
+[0m[[0m[0minfo[0m] [0m[0mBIPUSH(2)[0m
+[0m[[0m[0minfo[0m] [0m[0mANEWARRAY(java/lang/Object)[0m
+[0m[[0m[0minfo[0m] [0m[0mDUP[0m
+[0m[[0m[0minfo[0m] [0m[0mBIPUSH(0)[0m
+[0m[[0m[0minfo[0m] [0m[0mILOAD(0)[0m
+[0m[[0m[0minfo[0m] [0m[0mINVOKESTATIC(java/lang/Integer,valueOf,(I)Ljava/lang/Integer;)[0m
+[0m[[0m[0minfo[0m] [0m[0mAASTORE[0m
+[0m[[0m[0minfo[0m] [0m[0mDUP[0m
+[0m[[0m[0minfo[0m] [0m[0mBIPUSH(1)[0m
+[0m[[0m[0minfo[0m] [0m[0mILOAD(1)[0m
+[0m[[0m[0minfo[0m] [0m[0mINVOKESTATIC(java/lang/Integer,valueOf,(I)Ljava/lang/Integer;)[0m
+[0m[[0m[0minfo[0m] [0m[0mAASTORE[0m
+[0m[[0m[0minfo[0m] [0m[0mDUP[0m
+[0m[[0m[0minfo[0m] [0m[0mPOP[0m
+[0m[[0m[0minfo[0m] [0m[0mINVOKEVIRTUAL(java/io/PrintStream,printf,(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/PrintStream;)[0m
+[0m[[0m[0minfo[0m] [0m[0mPOP[0m
+[0m[[0m[0minfo[0m] [0m[0mLABEL(#30)[0m
+[0m[[0m[0minfo[0m] [0m[0mRETURN[0m
+[0m[[0m[0minfo[0m] [0m[0mEND_METHOD[0m
+[0m[[0m[0minfo[0m] [0m[0mEND_CLASS[0m
+[0m[[0m[0minfo[0m] [0m[0mWow, avoided a div by 0! 4 0[0m

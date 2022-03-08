@@ -1,0 +1,19 @@
+/*
+Name: Jake Schinto
+Email: jjs220@lehigh.edu
+Class: cse 264-010
+Assignment: 4, Task Manager
+*/
+#manager {
+    float: left;
+    margin-right: 10px;
+}
+#rightCol {
+    float: left;
+}
+.bigrow {
+    min-width: 120px;
+}
+.smallrow {
+    min-width: 18px;
+}

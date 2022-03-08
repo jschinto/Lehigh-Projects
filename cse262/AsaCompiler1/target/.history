@@ -1,0 +1,8 @@
+run settest.asa
+sbt
+exit
+run settest.asa
+run settest
+run settest.asa
+exit
+run settest.asa

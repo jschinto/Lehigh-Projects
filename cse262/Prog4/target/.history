@@ -1,0 +1,198 @@
+run
+pwd
+exit
+run
+clean
+run
+clean
+run
+clean
+run
+exit
+run
+clean
+run
+clean
+run
+clean
+run
+compile
+clea
+clean
+run
+clean
+run
+clean
+run
+clean
+run
+clean
+run
+clean
+run
+clean
+run
+clean
+run
+clean
+run
+compile
+run
+exit
+run
+compile
+exit
+compile
+exit
+compile
+run
+compile
+exit
+run
+compile
+exit
+compile
+exit
+compile
+exit
+compile
+run
+compile
+exit
+run
+exit
+run
+reload
+run
+reload
+run
+exit
+run
+reload
+run
+reload
+run
+clean
+run
+reload
+run
+reload
+run
+clean
+run
+clean
+run
+reload
+clean
+run
+exit
+run
+ls
+clean
+reload
+run
+clean
+run
+reload
+clean
+run
+exit
+run
+reload
+clean
+run
+reload
+clean
+run
+reload
+clean
+run
+clean
+run
+clean
+compile
+run
+compile
+run
+cleab
+clean
+run
+clean
+run
+reload
+clean
+run
+clen
+clean
+run
+clean
+run
+exit
+ls
+clean
+compile
+clean
+compile
+clean
+run
+clean
+run
+]
+run
+run test.asa
+exit
+compile
+run test.asa
+run calendar.asa
+clean
+run calendar.asa
+clean
+run calendar.asa
+run -feature calendar.asa
+run calendar.asa
+clean
+run calendar.asa
+cean
+clean
+run calendar.asa
+clean
+run calendar.asa
+clean
+run calendar.asa
+clean
+run calendar.asa
+run stringtest.asa
+run calendar.asa
+clean
+run calendar.asa
+clean
+run calendar.asa
+clean
+run calendar.asa
+clean
+run calendar.asa
+clean
+run calendar.asa
+run test.asa
+run arraytest.asa
+run bubblesort.asa
+clean
+run bubblesort.asa
+clean
+run bubblesort.asa
+run settest.asa
+run calendar.asa
+clean
+run bubblesort.asa
+run calendar.asa
+run stringtest.asa
+run calendar.asa
+exit
+run settest.asa
+run test.asa
+run andTest.asa
+run andorTest.asa
+run calander.asa
+run calandar.asa
+run calendar.asa
+run shorttest.asa

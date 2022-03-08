@@ -1,0 +1,49 @@
+import java.io.*;
+import java.sql.*;
+
+public class DataConnect {
+    private String pass;
+    private Connection conn;
+
+    public void makeConnection(String inPass) throws SQLException {
+        pass = inPass;
+        Connection con = DriverManager.getConnection(
+                "jdbc:oracle:thin:@edgar0.cse.lehigh.edu:1521:cse241", "jjs220",
+                pass);
+        conn = con;
+    }
+
+    public Connection getConnection() {
+        return conn;
+    }
+
+    public boolean closeConnection() {
+        try {
+            conn.close();
+            return true;
+        }
+        catch (SQLException se) {
+            return false;
+        }
+    }
+
+    public <T> void setCSParam(CallableStatement cs, Integer inIndex, T inValue)
+            throws SQLException {
+        if (inValue == null) {
+            cs.setNull(inIndex, java.sql.Types.NUMERIC);
+        }
+        else if (inValue instanceof String) {
+            cs.setString(inIndex, (String) inValue);
+        }
+        else if (inValue instanceof Integer) {
+            cs.setInt(inIndex, (Integer) inValue);
+        }
+        else if (inValue instanceof Long) {
+            cs.setLong(inIndex, (Long) inValue);
+        }
+        else if (inValue instanceof Boolean) {
+            System.out.println("output");
+            cs.registerOutParameter(inIndex, java.sql.Types.VARCHAR);
+        }
+    }
+}

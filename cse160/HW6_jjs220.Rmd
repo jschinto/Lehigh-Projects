@@ -1,0 +1,79 @@
+---
+title: "CSE 160 Homework #6"
+output: html_notebook
+---
+
+Comment with your name, the date and the homework assignment name
+```{r}
+# Jake Schinto, 02/28/20, Homework 6
+```
+
+
+Q1.  [5 points]
+
+Much of our data is stored in columns of dataframes as factors.  Two useful functions to help you reason about a factor are:
+
+- **nlevels(*factor*)** - returns the number of unique values defined for the factor
+- **levels(*factor*)** - returns the vector of unique values defined for the factor
+
+Write an R function called **calc_entropy** to take a factor as its parameter containing class labels and calculate and print the entropy of the set of labels.  While you may use built-in helper functions (i.e., ones that don't require an additional library), you may not use a function that calculates entropy for you.  Note that if you want your entropy to always range from 0 to 1, then you need to use the version of log() that has a base that matches the number of classes.
+
+```{r}
+
+calc_entropy <- function(f) {
+  ret <- 0
+  for(val in levels(f)) {
+    count <- 0
+    for(i in f) {
+      if(i == val) {
+        count <- count + 1
+      }
+    }
+    ret <- ret + ((count/length(f)) * log(count/length(f), nlevels(f)))
+  }
+  ret <- -1 * ret
+  return(ret)
+}
+
+```
+
+Q2. [2 points]  
+
+Write R code to build an rpart decision tree on the original wine dataframe from HW5. 
+
+```{r}
+
+wine <- read.csv("http://archive.ics.uci.edu/ml/machine-learning-databases/wine/wine.data", header = FALSE, col.names = c("Class","Alcohol", "Malic.Acid", "Ash", "Alcalinity.of.Ash", "Magnesium", "Total.Phenols", "Flavanoids", "Nonflavanoid.Phenols", "Proanthocyanins", "Color.Intensity", "Hue", "Diluted.Wines.Measure", "Proline"))
+#wine
+library(rpart)
+tree <- rpart(formula = Class~Alcohol+Malic.Acid+Ash+Alcalinity.of.Ash+Magnesium+Total.Phenols+Flavanoids+Nonflavanoid.Phenols+Proanthocyanins+Color.Intensity+Hue+Diluted.Wines.Measure+Proline, data = wine, method = "class")
+plot(tree)
+text(tree)
+
+```
+
+Q3. [3 points]
+
+Write R code to calculate and print the decision tree's accuracy on its training data.
+
+```{r}
+pre <- predict(tree,wine)
+count <- 0
+for(row in 1:nrow(pre)) {
+  max <- 0
+  classMax <- 0
+  for(col in 1:ncol(pre)) {
+    if(pre[row,col] > max) {
+      max <- pre[row,col]
+      classMax <- col
+    }
+  }
+  if(wine$Class[row] == classMax) {
+    count <- count + 1
+  }
+}
+accuracy <- count/nrow(pre)
+accuracy
+```
+
+

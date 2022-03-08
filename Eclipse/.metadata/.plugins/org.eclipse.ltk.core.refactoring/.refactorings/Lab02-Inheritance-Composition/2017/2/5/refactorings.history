@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Encapsulate field &apos;SubArray.addCount&apos; in &apos;SubArray&apos;&#x0A;- Original project: &apos;Lab02-Inheritance-Composition&apos;&#x0A;- Original element: &apos;SubArray.addCount&apos;&#x0A;- Getter method name: &apos;getAddCount&apos;&#x0A;- Setter method name: &apos;setAddCount&apos;&#x0A;- Field visibility: &apos;public&apos;&#x0A;- Use getter and setter methods in declaring type&#x0A;- Generate method comments" comments="true" declaring="true" description="Encapsulate field &apos;addCount&apos;" flags="589830" getter="getAddCount" id="org.eclipse.jdt.ui.self.encapsulate" input="/src&lt;{SubArray.java[SubArray^addCount" insertion="0" setter="setAddCount" stamp="1486135490349" version="1.0" visibility="1"/>
+</session>

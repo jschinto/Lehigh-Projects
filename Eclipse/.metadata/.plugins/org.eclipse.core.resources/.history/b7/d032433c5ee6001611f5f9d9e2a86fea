@@ -1,0 +1,58 @@
+import student.*;
+
+// -------------------------------------------------------------------------
+/**
+ * Unit tests for the {@link SimpleCalculator} class.
+ * 
+ * @author jake
+ * @version 2017.01.29
+ */
+public class SimpleCalculatorTest extends student.TestCase {
+    // ~ Instance/static fields ...............................................
+    private SimpleCalculator c;
+    // ~ Constructor ..........................................................
+
+    // ----------------------------------------------------------
+    /**
+     * Creates a new SimpleCalculatorTest object.
+     */
+    public SimpleCalculatorTest() {
+        // The constructor is usually empty in unit tests, since it runs
+        // once for the whole class, not once for each test method.
+        // Per-test initialization should be placed in setUp() instead.
+    }
+
+    // ~ Methods ...............................................................
+
+    // ----------------------------------------------------------
+    /**
+     * Sets up the test fixture. Called before every test case method.
+     */
+    public void setUp() {
+        /* Insert your own setup code here */
+        c = new SimpleCalculator(2, 5, '+');
+    }
+
+    // ----------------------------------------------------------
+    /* Insert your own test methods here */
+    /**
+     * test getOperator for correct construction
+     */
+    public void testGetOperator() {
+        assertEquals('+', c.getOperator());
+    }
+
+    /**
+     * test getOperand1 for correct construction
+     */
+    public void testGetOperand1() {
+        assertEquals(2, c.getOperand1(), 0.01);
+    }
+
+    /**
+     * test getOperand2 for correct construction
+     */
+    public void testGetOperand2() {
+        assertEquals(5, c.getOperand2(), 0.01);
+    }
+}

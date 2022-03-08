@@ -1,0 +1,10 @@
+import java.util.*;
+import java.io.*;
+import java.sql.*;
+
+public class Product {
+    private Integer product_id;
+    private String product_name;
+    private String size;
+    private ArrayList<String> product_types;
+}

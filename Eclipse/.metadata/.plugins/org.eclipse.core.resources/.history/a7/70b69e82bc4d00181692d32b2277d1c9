@@ -1,0 +1,21 @@
+import java.util.*;
+import java.io.*;
+import java.sql.*;
+
+public class jjs220 {
+    private static View theView;
+    private static DataConnect dc;
+
+    public static void main(String[] args) {
+        theView = new View();
+        theView.println("Enter Oracle Password: ");
+        while(dc.makeConnection(theView.readInput())){
+            theView.println("Login Failed.  Try Again?  (Y/N)");
+            if(theView.readYN().equals("N")) {
+                return;
+            }
+        }
+        
+    }
+
+}

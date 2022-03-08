@@ -1,0 +1,7 @@
+run
+run hi
+run abc
+run abc bcd
+run prog1Output.txt findWord.txt
+exit
+run wordpairs.txt testwords.txt

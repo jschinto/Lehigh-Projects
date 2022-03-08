@@ -1,0 +1,453 @@
+<!--
+  Name: Jake Schinto
+  Email: jjs220@lehigh.edu
+  Class: cse 264-010
+  Assignment: Final Project, Sudoku
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Sudoku</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+  <div id="container">
+    <h2>
+      SUDOKU!
+    </h2>
+    <table id="puzzle">
+      <tr>
+        <td class="outbox">
+          <table class="box">
+            <tr>
+              <td class="cell" id="r11">
+
+              </td>
+              <td class="cell" id="r12">
+
+              </td>
+              <td class="cell" id="r13">
+
+              </td>
+            </tr>
+            <tr>
+              <td class="cell" id="r21">
+
+              </td>
+              <td class="cell" id="r22">
+
+              </td>
+              <td class="cell" id="r23">
+
+              </td>
+            </tr>
+            <tr>
+              <td class="cell" id="r31">
+
+              </td>
+              <td class="cell" id="r32">
+
+              </td>
+              <td class="cell" id="r33">
+
+              </td>
+            </tr>
+          </table>
+        </td>
+        <td class="outbox">
+          <table class="box">
+            <tr>
+              <td class="cell" id="r14">
+
+              </td>
+              <td class="cell" id="r15">
+
+              </td>
+              <td class="cell" id="r16">
+
+              </td>
+            </tr>
+            <tr>
+              <td class="cell" id="r24">
+
+              </td>
+              <td class="cell" id="r25">
+
+              </td>
+              <td class="cell" id="r26">
+
+              </td>
+            </tr>
+            <tr>
+              <td class="cell" id="r34">
+
+              </td>
+              <td class="cell" id="r35">
+
+              </td>
+              <td class="cell" id="r36">
+
+              </td>
+            </tr>
+          </table>
+        </td>
+        <td class="outbox">
+          <table class="box">
+            <tr>
+              <td class="cell" id="r17">
+
+              </td>
+              <td class="cell" id="r18">
+
+              </td>
+              <td class="cell" id="r19">
+
+              </td>
+            </tr>
+            <tr>
+              <td class="cell" id="r27">
+
+              </td>
+              <td class="cell" id="r28">
+
+              </td>
+              <td class="cell" id="r29">
+
+              </td>
+            </tr>
+            <tr>
+              <td class="cell" id="r37">
+
+              </td>
+              <td class="cell" id="r38">
+
+              </td>
+              <td class="cell" id="r39">
+
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td class="outbox">
+          <table class="box">
+            <tr>
+              <td class="cell" id="r41">
+
+              </td>
+              <td class="cell" id="r42">
+
+              </td>
+              <td class="cell" id="r43">
+
+              </td>
+            </tr>
+            <tr>
+              <td class="cell" id="r51">
+
+              </td>
+              <td class="cell" id="r52">
+
+              </td>
+              <td class="cell" id="r53">
+
+              </td>
+            </tr>
+            <tr>
+              <td class="cell" id="r61">
+
+              </td>
+              <td class="cell" id="r62">
+
+              </td>
+              <td class="cell" id="r63">
+
+              </td>
+            </tr>
+          </table>
+        </td>
+        <td class="outbox">
+          <table class="box">
+            <tr>
+              <td class="cell" id="r44">
+
+              </td>
+              <td class="cell" id="r45">
+
+              </td>
+              <td class="cell" id="r46">
+
+              </td>
+            </tr>
+            <tr>
+              <td class="cell" id="r54">
+
+              </td>
+              <td class="cell" id="r55">
+
+              </td>
+              <td class="cell" id="r56">
+
+              </td>
+            </tr>
+            <tr>
+              <td class="cell" id="r64">
+
+              </td>
+              <td class="cell" id="r65">
+
+              </td>
+              <td class="cell" id="r66">
+
+              </td>
+            </tr>
+          </table>
+        </td>
+        <td class="outbox">
+          <table class="box">
+            <tr>
+              <td class="cell" id="r47">
+
+              </td>
+              <td class="cell" id="r48">
+
+              </td>
+              <td class="cell" id="r49">
+
+              </td>
+            </tr>
+            <tr>
+              <td class="cell" id="r57">
+
+              </td>
+              <td class="cell" id="r58">
+
+              </td>
+              <td class="cell" id="r59">
+
+              </td>
+            </tr>
+            <tr>
+              <td class="cell" id="r67">
+
+              </td>
+              <td class="cell" id="r68">
+
+              </td>
+              <td class="cell" id="r69">
+
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td class="outbox">
+          <table class="box">
+            <tr>
+              <td class="cell" id="r71">
+
+              </td>
+              <td class="cell" id="r72">
+
+              </td>
+              <td class="cell" id="r73">
+
+              </td>
+            </tr>
+            <tr>
+              <td class="cell" id="r81">
+
+              </td>
+              <td class="cell" id="r82">
+
+              </td>
+              <td class="cell" id="r83">
+
+              </td>
+            </tr>
+            <tr>
+              <td class="cell" id="r91">
+
+              </td>
+              <td class="cell" id="r92">
+
+              </td>
+              <td class="cell" id="r93">
+
+              </td>
+            </tr>
+          </table>
+        </td>
+        <td class="outbox">
+          <table class="box">
+            <tr>
+              <td class="cell" id="r74">
+
+              </td>
+              <td class="cell" id="r75">
+
+              </td>
+              <td class="cell" id="r76">
+
+              </td>
+            </tr>
+            <tr>
+              <td class="cell" id="r84">
+
+              </td>
+              <td class="cell" id="r85">
+
+              </td>
+              <td class="cell" id="r86">
+
+              </td>
+            </tr>
+            <tr>
+              <td class="cell" id="r94">
+
+              </td>
+              <td class="cell" id="r95">
+
+              </td>
+              <td class="cell" id="r96">
+
+              </td>
+            </tr>
+          </table>
+        </td>
+        <td class="outbox">
+          <table class="box">
+            <tr>
+              <td class="cell" id="r77">
+
+              </td>
+              <td class="cell" id="r78">
+
+              </td>
+              <td class="cell" id="r79">
+
+              </td>
+            </tr>
+            <tr>
+              <td class="cell" id="r87">
+
+              </td>
+              <td class="cell" id="r88">
+
+              </td>
+              <td class="cell" id="r89">
+
+              </td>
+            </tr>
+            <tr>
+              <td class="cell" id="r97">
+
+              </td>
+              <td class="cell" id="r98">
+
+              </td>
+              <td class="cell" id="r99">
+
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+
+    <div id="buttons">
+      <table id="buttab">
+        <tr>
+          <td>
+            <button class="but" onclick="random()">
+              Random
+            </button>
+          </td>
+          <td>
+            <button class="but" onclick="check()">
+              Check
+            </button>
+          </td>
+          <td>
+            <button class="but" onclick="hint()">
+              Hint
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td id="log" colspan="3">
+            <div id="out">
+              Press Random to Make a New Game<br />
+              Press Check to Check if Correct<br />
+              Press Hint for a Random Answer
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div id="numbers">
+      <table id="numtab">
+        <tr>
+          <th>
+            <button class="num" onclick="bNum(1)">
+              1
+            </button>
+          </th>
+          <th>
+            <button class="num" onclick="bNum(2)">
+              2
+            </button>
+          </th>
+          <th>
+            <button class="num" onclick="bNum(3)">
+              3
+            </button>
+          </th>
+          <th>
+            <button class="num" onclick="bNum(4)">
+              4
+            </button>
+          </th>
+          <th>
+            <button class="num" onclick="bNum(5)">
+              5
+            </button>
+          </th>
+          <th>
+            <button class="num" onclick="bNum(6)">
+              6
+            </button>
+          </th>
+          <th>
+            <button class="num" onclick="bNum(7)">
+              7
+            </button>
+          </th>
+          <th>
+            <button class="num" onclick="bNum(8)">
+              8
+            </button>
+          </th>
+          <th>
+            <button class="num" onclick="bNum(9)">
+              9
+            </button>
+          </th>
+          <th>
+            <button class="num" onclick="bNum('&nbsp;')">
+              C
+            </button>
+          </th>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript" src="scripts.js">
+  </script>
+</body>
+
+</html>

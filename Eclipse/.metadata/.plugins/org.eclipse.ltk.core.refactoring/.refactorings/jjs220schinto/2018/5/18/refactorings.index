@@ -1,0 +1,22 @@
+1525183470171	Delete element
+1525183943196	Delete element
+1525232335752	Rename type 'view'
+1525372513936	Rename local variable 'ifs'
+1525394485624	Encapsulate field 'address'
+1525394542500	Encapsulate field 'zipcode'
+1525398789388	Rename field 'shop_id'
+1525404385651	Encapsulate field 'type_id'
+1525404391994	Encapsulate field 'name'
+1525407093408	Rename method 'browse'
+1525408405518	Encapsulate field 'superType'
+1525417296121	Encapsulate field 'product_id'
+1525417302452	Encapsulate field 'product_name'
+1525417307564	Encapsulate field 'size'
+1525417312031	Encapsulate field 'brand_name'
+1525417317050	Encapsulate field 'total'
+1525417322263	Encapsulate field 'curr_price'
+1525417328568	Encapsulate field 'type_name'
+1525419221824	Encapsulate field 'plannedPurch'
+1525455846654	Rename method 'closeConnection'
+1525462507488	Delete element
+1525475507674	Encapsulate field 'price'

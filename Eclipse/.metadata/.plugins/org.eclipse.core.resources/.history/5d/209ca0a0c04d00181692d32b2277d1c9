@@ -1,0 +1,40 @@
+import java.util.*;
+import java.io.*;
+import java.sql.*;
+
+public class View {
+    private Scanner sc;
+
+    public View() {
+        sc = new Scanner(System.in);
+    }
+
+    public void print(String inMess) {
+        System.out.print(inMess);
+    }
+
+    public void println(String inMess) {
+        System.out.println(inMess);
+    }
+
+    public String readInput() {
+        return sc.nextLine();
+    }
+
+    public String readYN() {
+        while (true) {
+            String input = readInput().toUpperCase();
+            if (input.equals("Y") || input.equals("N")) {
+                return input;
+            }
+            println("Invalid input.  Please enter Y or N.");
+        }
+    }
+
+    public String readChoice(String... choices) {
+        for (int i = 1; i <= choices.length; i++) {
+            println("[" + i + "] " + choices[i - 1]);
+        }
+        return null;
+    }
+}

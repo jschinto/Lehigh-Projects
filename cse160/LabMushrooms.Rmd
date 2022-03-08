@@ -1,0 +1,93 @@
+---
+title: "CSE 160: Lab Modeling Mushrooms"
+author: "Jake Schinto"
+date: 23 March 2020
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
+
+---
+
+The goal for this lab is to become more comfortable with the typical R coding tasks for data science modeling.
+
+Put your name at the top as the author of this R notebook.
+
+Start by reading the mushroom data set from http://archive.ics.uci.edu/ml/machine-learning-databases/mushroom/agaricus-lepiota.data and storing it in a data frame.
+```{r}
+mushroom <- read.table("http://archive.ics.uci.edu/ml/machine-learning-databases/mushroom/agaricus-lepiota.data", sep = ",");
+```
+
+Sample half of the data for training, and half for testing
+
+```{r}
+n <- nrow(mushroom)
+mid <- round(n / 2)
+train <- mushroom[1:mid,]
+test <- mushroom[(mid+1):n,]
+```
+
+Build a decision tree to predict edible mushrooms
+```{r}
+library(rpart)
+mushroomTree <- rpart(V1 ~ ., data = train, method = 'class')
+mPred <- predict(mushroomTree, test, type='class')
+```
+
+Calculate and print accuracy on the test data
+```{r}
+acc <- mean(mPred == test$V1)
+print(paste('Accuracy:', acc))
+```
+
+Calculate and print precision and recall on the test data
+```{r}
+conf <- table(mPred, test$V1, dnn = c("pred.", "act."))
+tp <- conf[1,1]
+fp <- conf[1,2]
+fn <- conf[2,1]
+tn <- conf[2,2]
+prec <- tp / (tp + fp)
+recall <- tp / (tp + fn)
+print(paste('Precision:', prec))
+print(paste('Recall:', recall))
+```
+
+Do the same for another predictive method.  Your choice which method (presumably one that we have covered already).
+```{r}
+#install.packages("kknn")
+library(kknn)
+#remove constants
+train$V7 <- NULL
+train$V17 <- NULL
+train$V18 <- NULL
+test$V7 <- NULL
+test$V17 <- NULL
+test$V18 <- NULL
+#K-Nearest Neighbor
+#generate model, setting k = sqrt(n) where n is rows in training data
+kknnModel <- kknn(V1 ~ ., train = train, test = test, k = round(nrow(train)^.5))
+#predict test data
+kknnPred <- predict(kknnModel)
+#create confusion matrix
+conf <- table(kknnPred, test$V1, dnn = c("pred.", "act."))
+#calculate accuracy
+print(paste('Accuracy:', mean(kknnPred == test$V1)))
+tp <- conf[1,1]
+fp <- conf[1,2]
+fn <- conf[2,1]
+tn <- conf[2,2]
+prec <- tp / (tp + fp)
+recall <- tp / (tp + fn)
+print(paste('Precision:', prec))
+print(paste('Recall:', recall))
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file). 
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+

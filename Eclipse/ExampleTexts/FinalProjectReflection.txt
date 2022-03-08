@@ -1,0 +1,46 @@
+/**********************************************************************
+ *  README.txt                                                   
+ *  NewsSearchEngine
+ **********************************************************************/
+
+/**********************************************************************
+* Name?
+***********************************************************************/
+Jake Schinto
+
+
+
+/**********************************************************************
+* Approximate hours to complete assignment?
+***********************************************************************/
+Part I - 4 hours
+Part II - 10 hours
+Part III - 5 hours
+
+
+/**********************************************************************
+* Discuss the differences in search results between groups and the 
+* role design decisions (system customization) played. 
+**********************************************************************/
+Search Result Structure should be similar because every group used the same algorithm to determine the TFIDF values.  The main differences were from the differing news sources as well as different thresholds for the TFIDF value.  The threshold limits which results can be shown, so only important terms are left.  When looking at the different news sources, there is a wide variety of content.  For example, in terms of politics, Fox News is known to be much more conservative than the other News Source, Slate, that I used.  Because of this there is much more extreme articles, which could lead to users getting a different perspective on the news.  This could either lead the user to be more open to new information and ideas, or it could strengthen the users own ideas and cause them to reject differing ideas.  Both lead the user to a more thoughtful experience and is therefore a good thing for articles being so diverse.
+
+
+/**********************************************************************
+ * Describe any serious problems you encountered in this assignment.
+ * What was hard, or what should we warn students about in the future?                    
+ **********************************************************************/
+Group Work was the hardest part because it requires coordination between group mates that all have completely different schedules.  Also, understanding what was expected in the actual project design was hard to understand and thus led my group and I to constantly need to go get confirmation that we were actually on the right track.
+
+
+/**********************************************************************
+ * List any other comments here. Feel free to provide any feedback   
+ * on what you learned from doing the assignment, whether you enjoyed    
+ * doing it, etc.
+ **********************************************************************/
+It was a fun project, for future classes I would recommend starting Part II a little sooner to give more time to find a good way to coordinate with each other.  Personally, I prefer projects such as the maze or minesweeper because I thought it was interesting to see how games like those are made.  In this assignment I learned what a TFIDF value was and how customization actually has a big affect on influencing users and their ideas.  It scares me a little how much power one can get from a simple program.
+
+
+/**********************************************************************
+ * Enter your expected overall grade (over 100)
+ **********************************************************************/
+98 / 100

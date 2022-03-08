@@ -1,0 +1,74 @@
+---
+title: "Homework 5"
+output: html_notebook
+---
+
+Comment with your name, the date and the homework assignment name "HW5"
+```{r}
+# Jake Schinto, 2/16/20, HW5
+```
+
+
+1) (2 points) 
+
+Write R code to read the table from http://archive.ics.uci.edu/ml/machine-learning-databases/wine/wine.data and name the dataframe wine, and perform the following actions on that dataframe.
+
+The attributes from the website should be named:
+
+                        ("Class","Alcohol", "Malic.Acid", "Ash", "Alcalinity.of.Ash", "Magnesium", "Total.Phenols", "Flavanoids", "Nonflavanoid.Phenols", "Proanthocyanins", "Color.Intensity", "Hue", "Diluted.Wines.Measure", "Proline") 
+
+```{r}
+wine <- read.csv("http://archive.ics.uci.edu/ml/machine-learning-databases/wine/wine.data", header = FALSE, col.names = c("Class","Alcohol", "Malic.Acid", "Ash", "Alcalinity.of.Ash", "Magnesium", "Total.Phenols", "Flavanoids", "Nonflavanoid.Phenols", "Proanthocyanins", "Color.Intensity", "Hue", "Diluted.Wines.Measure", "Proline"))
+```
+
+2) (4 points) 
+
+Make a copy of the above dataframe, and call it wine2.
+On wine2, use your knowledge of data frame manipulation to...
+
+  - delete attributes "Nonflavanoid.Phenols", "Proanthocyanins", "Color.Intensity", "Hue", "Diluted.Wines.Measure", & "Proline"
+
+  - create an attribute, "useless", that is the product of the attributes "Alcohol" and "Flavanoids"
+
+  - create an attribute, "evenMoreUseless", that is the boolean answer to "Alcohol" > 12
+
+
+
+You can check your answer against these two commands (understand what they are doing -- play around with the numbers):
+
+> head(wine2, 3)
+  Class Alcohol Malic.Acid  Ash Alcalinity.of.Ash Magnesium Total.Phenols Flavanoids useless evenMoreUseless
+1     1   14.23       1.71 2.43              15.6       127          2.80       3.06 43.5438        TRUE
+2     1   13.20       1.78 2.14              11.2       100          2.65       2.76 36.4320        TRUE
+3     1   13.16       2.36 2.67              18.6       101          2.80       3.24 42.6384        TRUE
+> wine2[10:12,]
+   Class Alcohol Malic.Acid  Ash Alcalinity.of.Ash Magnesium Total.Phenols Flavanoids useless evenMoreUseless
+10     1   13.86       1.35 2.27              16.0        98          2.98       3.15 43.6590        TRUE
+11     1   14.10       2.16 2.30              18.0       105          2.95       3.32 46.8120        TRUE
+12     1   14.12       1.48 2.32              16.8        95          2.20       2.43 34.3116        TRUE
+
+```{r}
+wine2 <- wine
+wine2$Nonflavanoid.Phenols <- NULL
+wine2$Proanthocyanins <- NULL
+wine2$Color.Intensity <- NULL
+wine2$Hue <- NULL
+wine2$Diluted.Wines.Measure <- NULL
+wine2$Proline <- NULL
+wine2$useless <- wine2$Alcohol * wine2$Flavanoids
+wine2$evenMoreUseless <- wine2$Alcohol > 12
+```
+
+
+3) (4 points)
+
+From the original wine dataframe, determine the average Malic.Acid. Then, specifically using a for loop, print each row of the dataframe that has greater than the average Malic.Acid. 
+```{r}
+avgAcid <- mean(wine$Malic.Acid)
+for(i in 1:nrow(wine)) {
+  if(wine[i, "Malic.Acid"] > avgAcid) {
+    print(wine[i,])
+  }
+}
+```
+

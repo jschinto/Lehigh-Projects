@@ -1,0 +1,38 @@
+import student.*;
+
+// -------------------------------------------------------------------------
+/**
+ * Unit tests for the {@link SimpleCalculator} class.
+ * 
+ * @author jake
+ * @version 2017.01.29
+ */
+public class SimpleCalculatorTest extends student.TestCase {
+    // ~ Instance/static fields ...............................................
+
+    // ~ Constructor ..........................................................
+
+    // ----------------------------------------------------------
+    /**
+     * Creates a new ComputerTest object.
+     */
+    public SimpleCalculatorTest() {
+        // The constructor is usually empty in unit tests, since it runs
+        // once for the whole class, not once for each test method.
+        // Per-test initialization should be placed in setUp() instead.
+    }
+
+    // ~ Methods ...............................................................
+
+    // ----------------------------------------------------------
+    /**
+     * Sets up the test fixture. Called before every test case method.
+     */
+    public void setUp() {
+        /* Insert your own setup code here */
+    }
+
+    // ----------------------------------------------------------
+    /* Insert your own test methods here */
+
+}

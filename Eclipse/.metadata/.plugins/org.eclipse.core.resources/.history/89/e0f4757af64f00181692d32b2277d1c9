@@ -1,0 +1,129 @@
+import java.sql.*;
+import java.util.*;
+
+public class EnterpriseManager {
+    View theView;
+    DataConnect dc;
+    Connection conn;
+
+    public EnterpriseManager(View theView, DataConnect dc) {
+        this.theView = theView;
+        this.dc = dc;
+
+        run();
+    }
+
+    private void run() {
+        theView.println("Hello Enterprise Managers!");
+        mainMenu();
+    }
+
+    private String[] mainoptions = { "Purchase online inventory", "Add Product",
+            "Business performance", "Logout" };
+
+    private void mainMenu() {
+        // TODO Auto-generated method stub
+        String pick = theView.readChoice("What would you like to do?",
+                mainoptions);
+        if (pick.equals("0")) {
+            purchaseInv();
+        }
+        else if (pick.equals("1")) {
+            addProduct();
+        }
+        else if (pick.equals("2")) {
+            reporting();
+        }
+        else {
+            theView.println("Logging off.");
+            return;
+        }
+    }
+
+    private void reporting() {
+        // TODO Auto-generated method stub
+
+    }
+
+    private void addProduct() {
+        // TODO Auto-generated method stub
+
+    }
+
+    private void purchaseInv() {
+        theView.print("What is the product_id that you want to buy?: ");
+        String product_id = theView.readAlphaNum();
+        ArrayList<Store> vendors = getVendorList(
+                "VENDOR.VENDOR_ID,VENDOR_PRICE,ADDRESS,ZIPCODE", 4,
+                "VENDOR_PRODUCT,VENDOR", true,
+                "VENDOR_PRODUCT.VENDOR_ID = VENDOR.VENDOR_ID AND PRODUCT_ID = ?",
+                theView.parseInt(product_id));
+        for (int i = 0; i < vendors.size(); i++) {
+
+        }
+    }
+
+    private <T> ArrayList<Store> getVendorList(String returnAtt, Integer atts,
+            String table, boolean isWhere, String searchAtt, Integer where) {
+        ArrayList<ArrayList<String>> Stores = getDataList(returnAtt, atts,
+                table, isWhere, searchAtt + " = ?", where);
+        ArrayList<Store> s = new ArrayList<Store>();
+        for (int i = 0; i < Stores.size(); i++) {
+            s.add(new Store(theView.parseInt(Stores.get(i).get(0)),
+                    Double.parseDouble(Stores.get(i).get(1)),
+                    Stores.get(i).get(2),
+                    theView.parseInt(Stores.get(i).get(3))));
+        }
+        return s;
+    }
+
+    private String simpleSelect(String att, String table) {
+        try {
+            PreparedStatement ps = conn
+                    .prepareStatement("SELECT " + att + " FROM " + table);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                return rs.getString(1);
+            }
+        }
+        catch (SQLException se) {
+
+        }
+        return null;
+    }
+
+    private <T> ArrayList<ArrayList<String>> getDataList(String returnAtt,
+            Integer atts, String table, boolean isWhere, String searchAtt,
+            T where) {
+        try {
+            PreparedStatement ps;
+            if (isWhere) {
+                ps = conn.prepareStatement("SELECT " + returnAtt + " FROM "
+                        + table + " WHERE " + searchAtt);
+                dc.setPS(ps);
+                dc.setPSParam(1, where);
+            }
+            else {
+                ps = conn.prepareStatement(
+                        "SELECT " + returnAtt + " FROM " + table);
+            }
+            ResultSet r = ps.executeQuery();
+            ArrayList<ArrayList<String>> pids = new ArrayList<ArrayList<String>>();
+            while (r.next()) {
+                ArrayList<String> curr = new ArrayList<String>();
+                for (int i = 1; i <= atts; i++) {
+                    curr.add(r.getString(i));
+                }
+                pids.add(curr);
+            }
+            return pids;
+        }
+        catch (SQLException se) {
+            System.out.println("there was an error");
+            System.out.println(se.getMessage());
+        }
+        return new ArrayList<ArrayList<String>>();
+    }
+
+}

@@ -1,0 +1,107 @@
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="http://vignette1.wikia.nocookie.net/leagueoflegends/images/e/e8/ProfileIcon778_Sona_DJ_Ethereal.jpg/revision/latest?cb=20150204200057">
+
+    <title>CS Counter</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart([], []));
+      function drawChart(xValue, yValue, zValue) {
+        var graphData = new google.visualization.DataTable();  // got this from the Google chart site, too!
+        graphData.addColumn('number', "Time");                 // google charts is picky!  Fitst add columns to represent the columns of data.  It's picky on the data types.
+        graphData.addColumn('number', "CS/Minute");
+        graphData.addColumn('number', "Gold/Second");
+        graphData.addRows(xValue.length+1);                     // Now, make rows in the table, determined by the number of rows in the arrays
+        for (i=0; i<xValue.length; i++){                   // Fill the Cells with the data.  I used this loop.  There's probably a better way to do this.
+          graphData.setCell(i, 0, xValue[i]);
+          graphData.setCell(i, 1, yValue[i]);
+          graphData.setCell(i, 2, zValue[i]);
+
+          var options = {
+            title: 'CS per Minute vs Gold per Second',                   // Copped this from the Google site, too, but there are plenty of options to set here.
+            height: 500,
+            lineWidth: 4,                                     // This one is my own idea :-)
+            series: {
+            1: { lineDashStyle: [2, 1] }
+            },
+            hAxis: {
+              title: 'Time in Game (min)'
+            },
+            vAxis: {
+              title: 'Total gain each Minute'
+            }
+          };
+        }
+        var chart = new google.visualization.LineChart(document.getElementById('linechart'));
+
+        chart.draw(graphData, options);                      // Ta! Da!
+      }
+
+    </script>
+   
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">League of Legends CS Counter</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#show">Content</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+
+      <div class="form-group">
+        <label for="userName">Summoner Name:</label>
+        <input type="text" onKeyDown="if(event.keyCode==13){ summonerLookUp();}" class="form-control" id="userName">
+        <p></p>
+        <button type="button" class="btn btn-primary" onclick="summonerLookUp()">Search</button>
+        <button type="button" class="btn btn-secondary" onclick="next(false)">Newer</button>
+        <button type="button" class="btn btn-secondary" onclick="next(true)">Older</button>
+        <button type="button" class="btn btn-danger" onclick="modes()">Switch</button>
+        <br /><p>Click switch to change between the data for the 10 most recent games and all ranked games. (Newer and Older change currently viewed game)</p>
+        <p id="mode" class="bg-info">Mode: Recent Games</p>
+      </div>
+      <h2>Summoner Information</h2>
+      <p>Basic Summoner and Match Information:</p><!--pre makes formating in code important because spaces are preserved-->
+      <pre>Summoner Name: <span id="name"></span>            Summoner Level: <span id="sLevel"></span>            Summoner ID: <span id="sID"></span>
+Match ID: <span id="mID"></span>           Champion Used: <span id="champ"></span>           Queue: <span id="queue"></span>           Date: <span id="season"></span></pre>
+      
+    </div><!-- /.container -->
+    <p></p>
+    <center><div id="show"><button type="button" class="btn btn-primary" id="showButton" onclick="begin()">Show Details</button></div></center>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/myjs.js"></script>
+  
+
+</body></html>

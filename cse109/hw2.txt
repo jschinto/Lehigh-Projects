@@ -1,0 +1,56 @@
+Jake Schinto (jjs220)
+
+READING QUESTIONS:
+1.a. The author is making the point that writing/English class is important to programing.  He explains it as necessary in order to communicate what your code does in order to make it easier for others to follow.
+1.b. This applies to me because I am a comp sci major in college and, according to the author, should be taking more writing intensive courses.
+1.c. I hate writing as well as english class and any class that associates with writing.  I know comments and explaining your code is important, but I disagree that its important to write as well as the author says is required.  As long as I can write enough to get the point across it is fine.  I don’t need a well written essay to explain everything I ever write.
+
+2.a. Author is saying to learn at least one semester of C.  C is the closest language to the machine language and you need to know it to get the best programming jobs.
+2.b. This applies to me because I am now a comp sci major that has learned a semester of C.
+2.c. I can agree that c has taught me a lot of neat things that other languages don’t even bother to go into.
+
+3.a. The author is stating the importance of knowing business, in particular microeconomics.  In econ  courses they teach about supply and demand and how the basics of business works.
+3.b. This applies to me because I am actually majoring in CSB which includes the business aspects as well including microeconomics.  I had to learn all those neat things about how businesses work and I think I will be better off because of it.
+3.c. I agree with the author because he is right about the importance of knowing at least the basics of business and how it works or you won’t get very far in the business world with your code.
+
+4.a. The author is essentially saying to do well in school even in classes that aren’t programming or are boring.  He says that employers look at GPA so getting a high average in everything is important.
+4.b. This can apply to me because like the author there are classes that I must take and really don’t enjoy.  One example of such a class was English class.  I hated that class and ended up getting the lowest grades of all my classes in English.
+4.c. I agree with the author that it is important to try to get a good grade in every class no matter how boring, but generally you shouldn’t be taking a boring class unless it is required by the school.
+
+5.a. The author, i think, is trying to say to take programming intensive courses as opposed to classes such as dynamic logic which is in Computer science department but has very little to do with software development.
+5.b. I’m not really sure how this applies to me because most courses I have to take are either already programming intensive or not a comp sci class.
+5.c. I agree that if you are looking to be a software developer you have to do some software developing.  However, I think its important to do what interests someone more not just do it because its got some coding to do in it.
+
+6.a. The author is saying not to worry about jobs going to india or struggling to find a job.  If you truly enjoy programming there is a demand for it and you can make a living doing what you love.
+6.b. This applies to me because I would like to make a living as a software developer and it would be great to find a job out of college that I really enjoy.
+6.c. I agree with the author that people shouldn’t worry about losing jobs to other countries.  In America there should always be a demand for good programmers.  And it can pay well if you really prove your worth for it.
+
+7.a. The author is telling the college students to make sure to have a summer internship on your resume that involves programming in some way.  Doing an internship proves your love for coding as well as gives you experience that employers like to see.
+7.b. This applies to me because I am a comp sci major in college, however, I have already been doing a programming related internship over summers in New York city that I really love working with.
+7.c. I agree with the author here that it is very important to have summer internships.  It shows your experience in the field and lets them know that you like the work and chose to continue with it.
+
+
+OTHER QUESTIONS:
+1. For programming assignments I spend roughly 12 or more hours trying to really learn each topic necessary to do the code as well as actually coding, debugging, and perfecting.  For effort, I think my work deserves in the anywhere between A+ to A- because I really do put in the effort to make it work before submitting but sometimes I simply spend multiple hours looking at one error and have to submit without being able to fix it.  But generally such errors are small and not really worth the amount of time I do put in to them.  Simply, I care about my code and it drives me crazy when something doesn’t work no matter how small.
+
+2. So far I like to think that I have been doing really well in this class.  Some topic are generally very confusing and the binary approach makes it seem like I’m doing poorly, but overall I seem to be significantly above average (I think) and hope to get at least an A-, but ideally I would want an A of course.
+
+3.a. 10.  The instructions on text editors and manuals were very clear or at least clear enough where I didn’t really have any issues with this.  Grade: A.
+3.b. 10.  This is such a broad topic, but I think you covered it well maybe even a little too well.  I wouldn’t add anything else and I’m not really sure what should be taken away, but maybe a little more time spent on learning C++ would help.  Grade: A.
+3.c. 10.  Man page really did your job for you on this one, but I really did like the lab we did on this topic.  It actually forced me to know the stuff well.  Grade: A.
+3.d. 10.  Not sure why this is its own topic, but you did well. Grade: A.
+3.e. 10.  At first this was hard to understand but after learning the memory stuff it all made sense.  Grade: A
+3.f. 8.  I think this could have been covered a little more.  I learned how to do this one online.  Grade: A
+3.g. 10.  I feel like I already knew what a hash was, but from what I could tell you made the subject clearer.  Grade: A
+3.h. 9.  This was fairly confusing to me but I ended up getting it through an extensive search through man pages.  Grade A.
+3.i. 10.  Pretty similar to java, which makes a lot of sense to me. Grade A
+3.j. 7.  I feel like this is also just like java, but I don’t think we really covered it that well.  Grade: A
+3.k. 6.  For some reason I’m not even sure if this was covered.  I assume it is also like java.  Grade: A
+3.l. 10.  I had used a debugger similar to gdb in the past, but you went over how to use it very well. Grade: A
+3.m. 10.  At first this was very confusing but after the midterm you really made it clear.  Maybe in the future doing those men allocation labs before the midterm would help. Grade: A
+3.n. 10.  Strings you did well with as well as char*.  Grade: A
+3.o. 8.  This topic still confuses me.  I get the ideas behind it, but I’m still confused on what each method and pipes actually do. Grade: B
+3.p. 9.  This was easier to understand than interprocess stuff, but that didn’t stop it from causing trouble on the programming assignment.  Grade A-
+3.q. 7.  Didn’t really go into this much from what I could tell.  Grade: A-
+3.r. 10.  I think you covered this well through assignments.  Grade: A
+3.s. 10.  I think we did some pretty long programs if you ask me for that amount of time given to each one.  Grade A.

@@ -1,0 +1,45 @@
+-- Question 1 --
+SELECT course_id C_ID
+FROM section
+WHERE year = 2009 and building = 'Watson';
+
+-- Question 2 --
+SELECT DISTINCT COURSE_ID, SALARY
+FROM instructor
+INNER JOIN teaches
+ON teaches.id = instructor.id
+WHERE instructor.DEPT_NAME = 'Physics'
+ORDER BY instructor.SALARY;
+
+-- Question 3 --
+SELECT DISTINCT instructor.NAME, course.TITLE
+FROM instructor
+INNER JOIN teaches
+ON teaches.id = instructor.ID
+INNER JOIN course
+ON teaches.course_id = course.COURSE_ID
+WHERE instructor.DEPT_NAME = 'Physics'
+AND course.DEPT_NAME = 'Physics'
+ORDER BY instructor.NAME;
+
+-- Question 4 --
+SELECT DISTINCT instructor.ID, instructor.NAME, course.COURSE_ID, course.TITLE
+FROM instructor
+INNER JOIN teaches
+ON teaches.id = instructor.ID
+INNER JOIN course
+ON teaches.course_id = course.COURSE_ID
+WHERE instructor.DEPT_NAME != course.DEPT_NAME
+ORDER BY instructor.NAME, course.TITLE;
+
+-- Question 5 --
+SELECT S1.ID, S1.NAME
+FROM student S1
+WHERE S1.DEPT_NAME = 'Math'
+AND S1.TOT_CRED > (
+SELECT S2.TOT_CRED
+FROM student S2
+WHERE S2.NAME = 'Zhoo')
+ORDER BY name;
+
+-- NOTE: If the university had more than one student named Zhoo the error "ORA-01427: single-row subquery returns more than one row" would be returned and the query would fail. --

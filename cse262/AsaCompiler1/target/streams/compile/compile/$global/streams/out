@@ -1,0 +1,7 @@
+[0m[[0m[31merror[0m] [0m[0m/Users/jake/Documents/cse262/Prog5/src/main/scala/ASTBuilder.scala:86:59: value get is not a member of AsaParser.IntegerLiteralContext[0m
+[0m[[0m[31merror[0m] [0m[0m    val vlist = ctx.integerLiteral().asScala.toList.map(_.get)[0m
+[0m[[0m[31merror[0m] [0m[0m                                                          ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/jake/Documents/cse262/Prog5/src/main/scala/ASTBuilder.scala:89:25: value - is not a member of Nothing[0m
+[0m[[0m[31merror[0m] [0m[0m      val temp = 1 << (a-1)[0m
+[0m[[0m[31merror[0m] [0m[0m                        ^[0m
+[0m[[0m[31merror[0m] [0m[0mtwo errors found[0m

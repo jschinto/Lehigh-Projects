@@ -1,0 +1,16 @@
+== Homework 11 ==
+
+== Question 1 ==
+The schedule in table 1 is not serializable because Transactions 1 and 3 are cyclical, meaning that 1 reads before 3 writes, but 1 writes after 3 reads causing a cycle.
+
+== Question 2 ==
+1. Swap Write(A) in T1 with Write(A) in T3
+2. Swap Write(A) in T1 with Read(A) in T3
+Two Swaps.  Write(A) moved a distance of 2 up.
+The new graph is serializable because the new read(A) and write(A) are grouped one before the other removing the cycle.
+
+== Question 3 ==
+The schedule described is non-recoverable.  This is because transaction 3 cannot commit before transaction 1 commits.  If transaction 1 aborts after transaction 3 has committed, then the read in transaction 3 read data that had to be unwritten, which makes this order non-recoverable.
+
+== Question 4 ==
+See Photo.

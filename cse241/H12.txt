@@ -1,0 +1,27 @@
+== Homework 12 ==
+
+== Question 1 ==
+<T1>     || <T2>
+====================
+read(A)  ||
+write(A) ||
+         || read(A)
+         || read(B)
+         || write(B)
+read(B)  ||
+
+== Question 2 ==
+C1: <prepare T>
+C2: <ready T>
+C3: <ready T>   (C2 or C3 was sent but not received by C1)
+C1: <abort T>   (no response so abort assumed)
+C2: <abort T>
+C3: <abort T>
+
+== Question 3 ==
+A possible reason for only one ready T being received is that other the message was lost through a communication link failure.  In this case there was no way to reroute the message and the system was partitioned.
+
+== Question 4 ==
+Assuming C1 crashed after the <prepare T> message, C2 and C3 send <ready T> and must wait for C1 to recover in order to see what happened with the transaction therefore keeping all locks waiting.  When C1 recovers it would undo T and log the <abort T> because of the missing <ready T>, then signaling the other 2 sites to also <abort T>.
+
+If C1 had crashed after logging <abort T> then the other 2 sites would be able to abort without C1.

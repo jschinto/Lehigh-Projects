@@ -1,0 +1,48 @@
+html {
+    width: 800px;
+}
+#banner {
+    background-color: lightskyblue;
+    font-size: xx-large;
+    text-align: center;
+    font-weight: bold;
+    height: 60px;
+    line-height: 60px;
+}
+#leftCol {
+    width: 62%;
+    float: left;
+    padding-right: 4%;
+}
+#leftCol h2 {
+    margin-left: 20px;
+}
+#leftCol h3 {
+    margin-left: 40px;
+    font-style: italic;
+}
+#leftCol p {
+    margin-left: 60px;
+}
+#leftCol ul {
+    margin-left: 20px;
+}
+#leftCol table {
+    margin-left: 40px;
+}
+#rightCol {
+    width: 33%;
+    padding-right: 1%;
+    height: 200px;
+    float: left;
+}
+#clear {
+    clear: both;
+}
+#footer {
+    margin-top: 20px;
+    background-color: lightgrey;
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+}

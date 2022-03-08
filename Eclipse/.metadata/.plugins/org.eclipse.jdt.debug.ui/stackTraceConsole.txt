@@ -1,0 +1,3 @@
+if (node == null) {
+            throw new ItemNotFoundException(x.toString());
+        }

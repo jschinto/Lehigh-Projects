@@ -1,0 +1,15 @@
+{
+  "name": "taskmanager-jjs220",
+  "version": "1.0.0",
+  "description": "Homework 4: Task Manager",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "jjs220",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4"
+  }
+}

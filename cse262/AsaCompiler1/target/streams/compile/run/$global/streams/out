@@ -1,0 +1,10 @@
+[0m[[0m[0mdebug[0m] [0m[0mjavaOptions: List(-Xverify:all)[0m
+[0m[[0m[0minfo[0m] [0m[0mRunning (fork) AsaCompiler settest.asa[0m
+[0m[[0m[0minfo[0m] [0m[0mParsing...[0m
+[0m[[0m[0minfo[0m] [0m[0mBuilding AST...[0m
+[0m[[0m[0minfo[0m] [0m[0mSemantic Analysis...[0m
+[0m[[0m[0minfo[0m] [0m[0mGenerating Code...[0m
+[0m[[0m[0minfo[0m] [0m[0mRunning Program...[0m
+[0m[[0m[0minfo[0m] [0m[0m[ 1 3 5 ] [ 2 4 5 ] [ 1 2 3 4 5 ] [ 5 ] [ 1 3 4 5 ][0m
+[0m[[0m[0minfo[0m] [0m[0m4 is NOT in the set [ 1 3 5 ][0m
+[0m[[0m[0minfo[0m] [0m[0m4 is in the set [ 2 4 5 ][0m

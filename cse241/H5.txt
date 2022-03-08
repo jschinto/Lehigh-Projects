@@ -1,0 +1,34 @@
+CREATE OR REPLACE PROCEDURE
+    tookcourse (cid IN COURSE.COURSE_ID%TYPE)
+    IS
+    var number(38);
+BEGIN
+    SELECT count(*)
+    INTO var
+    FROM COURSE
+    WHERE COURSE_ID = cid;
+    IF var = 0
+    THEN
+        DBMS_OUTPUT.PUT_LINE('Course does not exist.');
+        RETURN;
+    END IF;
+    SELECT count(*)
+    INTO var
+    FROM TAKES, STUDENT
+    WHERE TAKES.COURSE_ID = cid
+    AND STUDENT.ID = TAKES.ID;
+    IF var = 0
+    THEN
+        DBMS_OUTPUT.PUT_LINE('No students have taken this course.');
+        RETURN;
+    END IF;
+    FOR c in (
+        SELECT STUDENT.ID, STUDENT.NAME, TAKES.YEAR, TAKES.SEMESTER, TAKES.SEC_ID 
+        FROM TAKES, STUDENT
+        WHERE TAKES.COURSE_ID = cid
+        AND STUDENT.ID = TAKES.ID
+        ORDER BY STUDENT.NAME, TAKES.YEAR, TAKES.SEMESTER DESC, TAKES.SEC_ID)
+    LOOP
+        DBMS_OUTPUT.PUT_LINE(RPAD(c.ID, 6, ' ') || RPAD(c.NAME, 20, ' ') || RPAD(c.YEAR, 7, ' ') || RPAD(c.SEMESTER, 10, ' ') || RPAD(c.SEC_ID, 3, ' '));
+    END LOOP;
+END;

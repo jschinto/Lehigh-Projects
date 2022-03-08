@@ -1,0 +1,70 @@
+---
+title: "CSE 160 Homework #7"
+output: html_notebook
+---
+
+```{r}
+# Jake Schinto, 03/16/20, Homework 7
+```
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
+
+```{r}
+#import Training and Test Data
+train <- read.table(file="http://www.cse.lehigh.edu/~brian/course/2020/datascience/TitanicTrain.csv",header = TRUE, sep = ",")
+test <- read.table(file="http://www.cse.lehigh.edu/~brian/course/2020/datascience/TitanicTest.csv", header = TRUE, sep =",")
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file). 
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+
+```{r}
+#Remove NAs in age, sex, fare, and embarked cols to clean up data
+#Also removed unnecessary columns and all rows with $0 for the fare
+train <- train[!with(train, is.na(pclass) | is.na(age) | is.na(sex) | is.na(fare) | is.na(embarked)),]
+train <- subset(train, fare > 0, select = c(survived, pclass, age, sex, fare, embarked))
+test <- test[!with(test, is.na(pclass) | is.na(age) | is.na(sex) | is.na(fare) | is.na(embarked)),]
+test <- subset(test, fare > 0, select = c(survived, pclass, age, sex, fare, embarked))
+```
+
+```{r}
+#Add the kknn package for k-nearest neighbor
+install.packages("kknn")
+library(kknn)
+```
+
+```{r}
+#Logistic Regression
+#generate model
+glmModel <- glm(survived ~ ., family = binomial(link='logit'), data = train)
+#predict test data
+glmPred <- predict(glmModel, test, type='response')
+#clasify the predictions
+glmPred <- ifelse(glmPred > 0.5,1,0)
+#create confusion matrix
+table(glmPred != 0, test$survived != 0, dnn = c("pred.", "act."))
+#calculate accuracy
+print(paste('Accuracy:', mean(glmPred == test$survived)))
+print(paste('Acceptable?', mean(glmPred == test$survived) > 0.7))
+```
+
+```{r}
+#K-Nearest Neighbor
+#generate model, setting k = sqrt(n) where n is rows in training data
+kknnModel <- kknn(survived ~ ., train = train, test = test, k = round(nrow(train)^.5))
+#predict test data
+kknnPred <- predict(kknnModel)
+#clasify the predictions
+kknnPred <- ifelse(kknnPred > 0.5,1,0)
+#create confusion matrix
+table(kknnPred != 0, test$survived != 0, dnn = c("pred.", "act."))
+#calculate accuracy
+print(paste('Accuracy:', mean(kknnPred == test$survived)))
+print(paste('Acceptable?', mean(kknnPred == test$survived) > 0.7))
+```
+

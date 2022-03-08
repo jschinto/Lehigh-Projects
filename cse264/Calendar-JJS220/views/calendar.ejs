@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html style="background-color: #05A48D;">
+  <head>
+    <meta charset="utf-8">
+    <title>Calendar</title>
+  </head>
+<body>
+  <table border="1" style="margin-left: auto; margin-right:auto; background-color: #D7756C">
+    <thead>
+      <tr>
+        <th>
+          <a id="<<" style="color: inherit; text-decoration: none;">
+            <<
+          </a>
+        </th>
+        <th>
+          <a id="<" style="color: inherit; text-decoration: none;">
+            <
+          </a>
+        </th>
+        <th colspan="3">
+          <%= monthYear %>
+        </th>
+        <th>
+          <a id=">" style="color: inherit; text-decoration: none;">
+            >
+          </a>
+        </th>
+        <th>
+          <a id=">>" style="color: inherit; text-decoration: none;">
+            >>
+          </a>
+        </th>
+      </tr>
+      <tr>
+        <th>
+          SU
+        </th>
+        <th>
+          MO
+        </th>
+        <th>
+          TU
+        </th>
+        <th>
+          WE
+        </th>
+        <th>
+          TH
+        </th>
+        <th>
+          FR
+        </th>
+        <th>
+          SA
+        </th>
+      </tr>
+    </thead>
+    <tbody style="text-align: center;">
+      <%- days %>
+    </tbody>
+  </table>
+  <script>
+    var month = parseInt('<%= month %>');
+    var year = parseInt('<%= year %>');
+    var m = month - 1;
+    var y = year;
+    if(m === -1) {
+      m = 11;
+      y--;
+    }
+    document.getElementById("<").href = "/calendar?month=" + (m + 1) + "&year=" + y;
+    m = month + 1;
+    y = year;
+    if(m === 12) {
+      m = 0;
+      y++;
+    }
+    document.getElementById(">").href = "/calendar?month=" + (m + 1) + "&year=" + y;
+    document.getElementById("<<").href = "/calendar?month=" + (month + 1) + "&year=" + (year - 1);
+    document.getElementById(">>").href = "/calendar?month=" + (month + 1) + "&year=" + (year + 1);
+  </script>
+</body>
+</html>

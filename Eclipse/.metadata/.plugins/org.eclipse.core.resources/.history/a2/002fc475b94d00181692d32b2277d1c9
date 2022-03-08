@@ -1,0 +1,12 @@
+import java.util.*;
+import java.io.*;
+import java.sql.*;
+
+public class jjs220 {
+    private static Scanner sc = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        System.out.println("Please Enter Oracle Password: ");
+    }
+
+}

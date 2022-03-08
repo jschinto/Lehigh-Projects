@@ -1,0 +1,16 @@
+import java.util.ArrayList;
+
+public class Type {
+    private Integer type_id;
+    private String name;
+    private ArrayList<Type> children;
+
+    public Type(Integer type_id, String name, Type... children) {
+        this.type_id = type_id;
+        this.name = name;
+        this.children = new ArrayList<Type>();
+        for (Type t : children) {
+            this.children.add(t);
+        }
+    }
+}

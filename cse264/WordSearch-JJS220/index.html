@@ -1,0 +1,79 @@
+<!--
+  Name: Jake Schinto
+  Email: jjs220@lehigh.edu
+  Class: cse 264-010
+  Assignment: 5, Word Search
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Word Search</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+</head>
+
+<body>
+  <h1>Word Search</h1>
+  <h3 id="theme">Register to see the puzzle</h3>
+  <div id="container">
+    <div id="manager" class="left">
+      <table>
+        <tbody id="puzzle">
+
+        </tbody>
+      </table>
+    </div>
+    <div id="rightCol" class="left">
+      <div id="register">
+        <form id="userForm" class="left">
+          New Username: <input type="text" name="user" id="user" />
+        </form>
+        <button id="reg" class="left">Register</button>
+        <p id="currName"></p>
+      </div>
+      <div id="rest">
+        <button id="sub">Submit Word</button>
+        <br />
+        <div id="scoreDiv" class="left">
+        <table border="1" id="score">
+          <thead>
+            <tr>
+              <th>
+                Name
+              </th>
+              <th>
+                Score
+              </th>
+            </tr>
+          </thead>
+          <tbody id="players">
+          </tbody>
+        </table>
+        </div>
+        <!--<div id="wordsDiv" class="left">
+        <table border="1" id="words">
+          <thead>
+            <tr>
+              <th>
+                Claimed Words
+              </th>
+            </tr>
+          </thead>
+          <tbody id="claim">
+          </tbody>
+        </table>
+        </div>-->
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js">
+  </script>
+  <script type="text/javascript" src="scripts.js">
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,11 @@
+== Homework 12 ==
+
+== Question 1 ==
+a. If all the values are the same for the partitioning attribute, then the only reasonable partition strategy would be the round robin strategy because both a hash and range partition would require all tuples to be placed on the same disk.
+
+b. If the attribute is a primary key, then the best partitioning strategy would be a hash partition because each value would need to be unique, so with a good hash function each disk should have the same number of tuples and little to no partition skew.
+
+c. Since there is a clear range of values (1 to 1000), the best option in this case is range partitioning.  You can split the range of 1 to 1000 into n equal parts where n is the number of disks because with true randomness there should be an equal (1/n) chance for each attribute to be in each chosen range.
+
+== Question 2 ==
+To monitor total sales for each minute we can summarize each minute by adding creating a total_sale attribute for each product in each minute.  As data is streamed in for each second we can take each sale value for the particular product and add it to the total for that minute until a value in the next minute is received, where the application would commit the previous minute’s data and begin summation for the next minute.

@@ -1,0 +1,19 @@
+Homework 8, Jake Schinto, 3/22/20
+
+a.
+Existing purchase: 4,000,000 * 0.06 = 240,000
+Potential purchase: 1,000,000 * 0.02 = 20,000
+Expenses: (5,000,000 - 240,000 - 20,000) * $3 = $14,220,000
+Existing profit: 240,000 * $30 = $7,200,000
+Potential profit: 20,000 * $25 = $500,000
+Overall profit: $7,200,000 + $500,000 - $14,220,000 = -$6,520,000
+
+b.
+Existing predicted: 4,000,000 * 0.08 = 320,000
+Existing profit: (320,000 * (5/8)) * $30 = $6,000,000
+Potential predicted: 1,000,000 * 0.12 = 120,000
+Potential profit: (120,000 * (2/12)) * $25 = $500,000
+Expenses: ((320,000 * (3/8)) + (120,000 * (10/12))) * $3 = $660,000
+Overall profit: $6,000,000 + $500,000 - $660,000 = $5,840,000
+
+The company should use the new model because they would have made $12,360,000 more if they had used it.  The prediction cuts out a huge majority of the expenses while only losing profits from a few customers that were incorrectly predicted.

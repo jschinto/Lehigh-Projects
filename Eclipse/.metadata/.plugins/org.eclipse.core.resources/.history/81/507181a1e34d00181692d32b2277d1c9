@@ -1,0 +1,34 @@
+public class jjs220 {
+    private static View theView;
+    private static DataConnect dc;
+    private static String option;
+
+    public static void main(String[] args) {
+        theView = new View();
+        theView.print("Enter Oracle Password: ");
+        dc = new DataConnect();
+        while (!dc.makeConnection("J$chinto98"/*theView.readInput()*/)) { 
+            //TODO Remove Password
+            theView.println("Login Failed.  Try Again?  (Y/N)");
+            if (theView.readYN().equals("N")) {
+                theView.println("Exiting.");
+                return;
+            }
+        }
+        theView.println("Connection made successfully!");
+        option = theView.readChoice("Choose an interface: ", "Online Customer", "In-store Customer",
+                "Enterprise Manager", "Store Manager");
+
+        if (option.equals("0")) {
+            dc.closeConnection();
+            new OnlineCustomer(theView, dc.getPass());
+        }
+        else {
+            theView.println("Interface not implemented yet.  Exiting.");
+        }
+
+        theView.println("Closing Connection.");
+        dc.closeConnection();
+    }
+
+}

@@ -1,0 +1,19 @@
+import java.util.*;
+import java.io.*;
+import java.sql.*;
+
+public class View {
+    private Scanner sc;
+    
+    public View() {
+        sc = new Scanner(System.in);
+    }
+    
+    public void println(String inMess){
+        System.out.println(inMess);
+    }
+    
+    public String readInput() {
+        return sc.nextLine();
+    }
+}

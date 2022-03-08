@@ -1,0 +1,18 @@
+program andorTest;
+var 
+  a : integer;
+  b : integer;
+  c : integer;
+begin
+  a := 10;
+  b := 0;
+  c := 2;
+  if (b <> 0) and ((a div b)=c) then
+    printf("and did not work\n");
+  else
+  	printf("and worked\n");
+  if (b = 0) or ((a div b)=c) then
+    printf("or worked\n");
+  else
+  	printf("or did not work\n");
+end.

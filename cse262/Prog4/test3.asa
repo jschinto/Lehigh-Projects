@@ -1,0 +1,27 @@
+program test;
+const 
+  c1=0xf; c2=011; c3=3; c4 = 3.14;
+var 
+  a, b: integer;
+  c, d: real;
+  i : integer;
+begin
+
+  while a < 15 do 
+    a := a + 1;
+
+  if a >= 15 then
+    d := 5.0;
+  else
+    d := 6.0;
+
+  repeat
+    a := a + 1;
+  until a >= 20;
+
+  for i := 1 to 10 do begin
+     b := b + 1;
+     printf("%d %d %f\n", b, b div 2, b/2.0);
+  end
+
+end.

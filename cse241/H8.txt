@@ -1,0 +1,40 @@
+== Homework 8 ==
+
+== Question 1 ==
+R=(A, B, C, H, I, J)
+F={ABC->H, BC->I, IJ->BH, BC->AI, B->HIJ}
+a. For FD BC->AI, {C, I} are extraneous.
+b. BC+ = {A, B, C, H, I, J}
+CIJ+ = {A, B, C, H, I, J}
+Candidate Keys: BC, CIJ
+c. BC->A B->HIJ IJ->B
+(A=B+C, B=I+J, C, H=B, I, J)
+Ex: 10, 8, 2, 8, 1, 7
+Ex2: 27, 26, 1, 26, 3, 23
+I has no dependency on H without the use of J
+
+== Question 2 ==
+a. Fc = {BC->A, B->HIJ, IJ->B}
+b. R1 = (A, B, C)
+R2 = (B, H, I, J)
+c. R1 = (A, B, C)
+BC->A nontrivial superkey
+R2 = (B, H, I, J)
+B->HIJ IJ->B nontrivial superkeys
+
+== Question 3 ==
+R = (A, B, C, D, E, G, H, I)
+F = {ABC->D, D->BCI, BC->E, E->HI}
+Fc = {ABC->D, D->BC, BC->E, E->HI}
+ADG+ = (A, B, C, D, E, G, H, I)
+BCNF:
+R1 = (E, H, I) E->HI
+R2 = (B, C, E) BC->E
+R3 = (A, B, C, D, G) ABC->D, D->BC
+Cannot be separated to BCNF because dependencies would be lost.
+3NF:
+R1 = (A, B, C, D) ABC->D, D->BC
+R2 = (B, C, E) BC->E
+R3 = (E, H, I) E->HI
+R4 = (A, D, G) candidate key
+Since BCNF cannot be achieved with the given dependencies, 3NF is the best decomposition to use.

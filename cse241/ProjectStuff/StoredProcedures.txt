@@ -1,0 +1,213 @@
+create or replace PROCEDURE
+    create_customer (
+    cid IN CUSTOMER.CUSTOMER_ID%TYPE, 
+    fName IN CUSTOMER.FIRST_NAME%TYPE, 
+    lName IN CUSTOMER.LAST_NAME%TYPE, 
+    adr IN CUSTOMER.ADDRESS%TYPE, 
+    zip IN CUSTOMER.ZIPCODE%TYPE, 
+    ifs IN CUSTOMER.IS_FREQUENT_SHOPPER%TYPE, 
+    ios IN CUSTOMER.IS_ONLINE_SHOPPER%TYPE, 
+    inage IN FREQUENT_SHOPPER.AGE%TYPE, 
+    gend IN FREQUENT_SHOPPER.GENDER%TYPE, 
+    incardnum IN ONLINE_SHOPPER.CARD_NUM%TYPE, 
+    incvv IN ONLINE_SHOPPER.CVV%TYPE, 
+    inexpdate IN ONLINE_SHOPPER.EXP_DATE%TYPE)
+    IS
+BEGIN
+    INSERT INTO CUSTOMER (CUSTOMER_ID, FIRST_NAME, LAST_NAME, ADDRESS, ZIPCODE, IS_FREQUENT_SHOPPER, IS_ONLINE_SHOPPER)
+    VALUES (cid, fName, lName, adr, zip, ifs, ios);
+    IF ifs = 'Y'
+    THEN
+        INSERT INTO FREQUENT_SHOPPER (CUSTOMER_ID, AGE, GENDER)
+        VALUES (cid, inage, gend);
+    END IF;
+    IF ios = 'Y'
+    THEN
+        INSERT INTO ONLINE_SHOPPER (CUSTOMER_ID, CARD_NUM, CVV, EXP_DATE)
+        VALUES (cid, incardnum, incvv, inexpdate);
+    END IF;
+END;
+
+
+create or replace PROCEDURE
+    create_product (pName IN PRODUCT.PRODUCT_NAME%TYPE, 
+    pSize IN PRODUCT."SIZE"%TYPE, 
+    pType IN TYPE.TYPE_NAME%TYPE, 
+    pBrand IN BRAND.BRAND_NAME%TYPE, 
+    pPrice IN INVENTORY.CURR_PRICE%TYPE)
+    IS
+    temp_id PRODUCT.PRODUCT_ID%TYPE;
+    tempinv INVENTORY.INV_ID%TYPE;
+BEGIN
+    INSERT INTO PRODUCT (PRODUCT_NAME, "SIZE")
+    VALUES (pName, pSize)
+    RETURNING PRODUCT_ID INTO temp_id;
+    INSERT INTO PRODUCT_TYPE (TYPE_ID, PRODUCT_ID)
+    VALUES ((SELECT TYPE_ID FROM TYPE WHERE TYPE_NAME = pType), temp_id);
+    INSERT INTO PRODUCT_BRAND (BRAND_ID, PRODUCT_ID)
+    VALUES ((SELECT BRAND_ID FROM BRAND WHERE BRAND_NAME = pBrand), temp_id);
+    INSERT INTO INVENTORY (TOTAL, CURR_PRICE)
+    VALUES (0, pPrice)
+    RETURNING INV_ID INTO tempinv;
+    INSERT INTO INV_PRODUCT (INV_ID, PRODUCT_ID)
+    VALUES (tempinv, temp_id);
+END;
+
+
+create or replace PROCEDURE
+    inventory_buy (
+    vid IN VENDOR.VENDOR_ID%TYPE, 
+    pid IN PRODUCT.PRODUCT_ID%TYPE, 
+    stid IN STORE.STORE_ID%TYPE, 
+    pricechange IN CHAR,
+    inprice IN INVENTORY.CURR_PRICE%TYPE, 
+    inamount IN VENDOR_TRANSACTION.AMOUNT%TYPE)
+    IS
+    total_temp number(38);
+    var number(38);
+    invid INVENTORY.INV_ID%TYPE;
+    onlineinv INVENTORY.INV_ID%TYPE;
+BEGIN
+    SELECT COUNT(*) 
+    INTO var
+    FROM STORE_INV
+    INNER JOIN INV_PRODUCT
+    ON STORE_INV.INV_ID = INV_PRODUCT.INV_ID
+    WHERE STORE_ID = stid AND PRODUCT_ID = pid;
+    
+    SELECT INV_PRODUCT.INV_ID
+    INTO onlineinv
+    FROM INV_PRODUCT
+    LEFT OUTER JOIN STORE_INV
+    ON INV_PRODUCT.INV_ID = STORE_INV.INV_ID
+    WHERE (STORE_ID IS NULL OR STORE_ID = '')
+    AND PRODUCT_ID = pid;
+
+    IF stid != '' OR stid IS NULL OR stid = 0
+    THEN
+        invid := onlineinv;
+    ELSIF var = 0
+    THEN
+        INSERT INTO INVENTORY (TOTAL, CURR_PRICE)
+        VALUES (0, (SELECT CURR_PRICE FROM INVENTORY WHERE INV_ID = onlineinv))
+        RETURNING INV_ID INTO invid;
+        INSERT INTO STORE_INV (INV_ID, STORE_ID)
+        VALUES (invid, stid);
+        INSERT INTO INV_PRODUCT (INV_ID, PRODUCT_ID)
+        VALUES (invid, pid);
+    ELSE
+        SELECT STORE_INV.INV_ID
+        INTO invid
+        FROM STORE_INV
+        INNER JOIN INV_PRODUCT
+        ON STORE_INV.INV_ID = INV_PRODUCT.INV_ID
+        WHERE STORE_ID = stid AND PRODUCT_ID = pid;
+    END IF;
+
+    IF pricechange = 'Y'
+    THEN
+        UPDATE INVENTORY 
+        SET CURR_PRICE = inprice
+        WHERE INV_ID = invid;
+    END IF;
+
+    SELECT TOTAL
+    INTO total_temp
+    FROM INVENTORY
+    WHERE INV_ID = invid;
+
+    total_temp := total_temp + inamount;
+    INSERT INTO VENDOR_TRANSACTION (PRICE, AMOUNT, PURCH_DATE)
+    VALUES ((SELECT VENDOR_PRICE FROM VENDOR_PRODUCT WHERE VENDOR_ID = vid AND PRODUCT_ID = pid), 
+    inamount, CURRENT_TIMESTAMP)
+    RETURNING TRANS_ID INTO var;
+    INSERT INTO INV_PURCHASE (PRODUCT_ID, VENDOR_ID, INV_ID, TRANS_ID)
+    VALUES (pid, vid, invid, var);
+    UPDATE INVENTORY SET TOTAL = total_temp 
+    WHERE INV_ID = invid;
+END;
+
+
+create or replace PROCEDURE
+    inventory_sale (
+    cid IN CUSTOMER.CUSTOMER_ID%TYPE, 
+    invid IN INVENTORY.INV_ID%TYPE, 
+    inamount IN CUSTOMER_TRANSACTION.AMOUNT%TYPE, 
+    inisonline IN CUSTOMER_TRANSACTION.IS_ONLINE%TYPE, 
+    inpaytype IN CUSTOMER_TRANSACTION.PAY_TYPE%TYPE, 
+    incardnum IN CREDIT.CARD_NUM%TYPE, 
+    incvv IN CREDIT.CVV%TYPE, 
+    inexpdate IN CREDIT.EXP_DATE%TYPE, 
+    inchecknum IN "CHECK".CHECK_NUM%TYPE, 
+    OUTPUT OUT VARCHAR)
+    IS
+    var number(38);
+    temp_trans_id CUSTOMER_TRANSACTION.TRANS_ID%TYPE;
+    temp_store number(38);
+BEGIN
+    OUTPUT := '';
+    
+    SELECT count(*)
+    INTO temp_store
+    FROM STORE_INV
+    WHERE INV_ID = invid;
+    IF temp_store = 0 AND inpaytype != 'credit'
+    THEN
+        OUTPUT := 'Invalid payment type';
+        RETURN;
+    END IF;
+    
+    SELECT TOTAL
+    INTO var
+    FROM INVENTORY
+    WHERE INV_ID = invid;
+    IF var < inamount
+    THEN
+        OUTPUT := 'Not enough inventory';
+        RETURN;
+    END IF;
+
+    UPDATE INVENTORY
+    SET TOTAL = var - inamount
+    WHERE INV_ID = invid;
+
+    INSERT INTO CUSTOMER_TRANSACTION (PRICE, AMOUNT, SALE_DATE, IS_ONLINE, PAY_TYPE)
+    VALUES ((SELECT CURR_PRICE FROM INVENTORY WHERE INV_ID = invid), inamount, CURRENT_TIMESTAMP, inisonline, inpaytype)
+    RETURNING TRANS_ID INTO temp_trans_id;
+    
+    IF inpaytype = 'credit'
+    THEN
+        INSERT INTO CREDIT (TRANS_ID, CARD_NUM, CVV, EXP_DATE)
+        VALUES (temp_trans_id, incardnum, incvv, inexpdate);
+    ELSIF inpaytype = 'check'
+    THEN
+        INSERT INTO "CHECK" (TRANS_ID, CHECK_NUM)
+        VALUES (temp_trans_id, inchecknum);
+    END IF;
+    
+    INSERT INTO CUST_PURCHASE (TRANS_ID, CUSTOMER_ID, INV_ID)
+    VALUES (temp_trans_id, cid, invid);
+END;
+
+
+create or replace PROCEDURE
+    update_vendor_price (
+    vid IN VENDOR.VENDOR_ID%TYPE, 
+    pid IN PRODUCT.PRODUCT_ID%TYPE, 
+    price IN VENDOR_PRODUCT.VENDOR_PRICE%TYPE)
+    IS
+    var number(38);
+BEGIN
+    SELECT COUNT(*) 
+    INTO var
+    FROM VENDOR_PRODUCT 
+    WHERE VENDOR_ID = vid AND PRODUCT_ID = pid;
+    IF var = 0
+    THEN
+        INSERT INTO VENDOR_PRODUCT (VENDOR_ID, PRODUCT_ID, VENDOR_PRICE)
+        VALUES (vid, pid, price);
+    ELSE
+        UPDATE VENDOR_PRODUCT SET VENDOR_PRICE = price
+        WHERE VENDOR_ID = vid AND PRODUCT_ID = pid;
+    END IF;
+END;

@@ -1,0 +1,67 @@
+<!--
+  Name: Jake Schinto
+  Email: jjs220@lehigh.edu
+  Class: cse 264-010
+  Assignment: 4, Task Manager
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Task Manager</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+</head>
+
+<body>
+  <h1>Task Manager</h1>
+  <div id="container">
+    <table id="manager" border="1">
+      <thead>
+        <tr>
+          <th class="smallrow">
+
+          </th>
+          <th class="bigrow">
+            Task
+          </th>
+          <th class="bigrow">
+            Type
+          </th>
+          <th class="bigrow">
+            Due Date
+          </th>
+        </tr>
+      </thead>
+      <tbody id="tasks">
+
+      </tbody>
+    </table>
+    <div id="rightCol">
+      <button id="add">Add</button>
+      <button id="del">Delete</button><br />
+      <form>
+        Description: <input type="text" name="desc" id="desc" /><br />
+        Date: <input type="text" name="date" id="date" /><br />
+        Type:
+        <select name="type" id="type">
+          <option value="next">Next Action</option>
+          <option value="wait">Waiting</option>
+          <option value="talk">Talk</option>
+          <option value="futr">Future</option>
+          <option value="smdy">Someday/Maybe</option>
+        </select><br />
+      </form>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous">
+  </script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" crossorigin="anonymous">
+  </script>
+  <script type="text/javascript" src="scripts.js">
+  </script>
+</body>
+
+</html>

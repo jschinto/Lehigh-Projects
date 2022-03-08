@@ -1,0 +1,39 @@
+---
+title: "PA Income Map"
+output: html_notebook
+author: "Jake Schinto"
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
+
+```{r}
+#PA County map: http://www.pasda.psu.edu/uci/DataSummary.aspx?dataset=3108
+#PA Median Incomes: https://www.indexmundi.com/facts/united-states/quick-facts/pennsylvania/median-household-income#table
+
+#Getting income data
+df <- read.table(file="/Users/jake/Documents/cse160/medIncome.txt", sep="\t", header = TRUE)
+
+```
+
+
+```{r}
+library("rgdal")
+paMap <- readOGR(dsn = "/Users/jake/Documents/cse160/tl_2010_42_county10", layer = "tl_2010_42_county10")
+paMap <- merge(paMap, df, by="NAME10")
+#plot(paMap)
+
+library("rgeos")
+library("tmap")
+tmap_options(max.categories = 12)
+qtm(shp = paMap, fill = "Income", text = "NAME10", text.size = 0.5, fill.palette = "Greens") 
+
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file). 
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+

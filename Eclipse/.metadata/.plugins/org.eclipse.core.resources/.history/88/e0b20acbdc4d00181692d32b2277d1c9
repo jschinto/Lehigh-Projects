@@ -1,0 +1,33 @@
+import java.io.*;
+import java.sql.*;
+
+public class DataConnect {
+    private String pass;
+    private Connection conn;
+
+    public boolean makeConnection(String inPass) {
+        pass = inPass;
+        try (Connection con = DriverManager.getConnection(
+                "jdbc:oracle:thin:@edgar0.cse.lehigh.edu:1521:cse241", "jjs220",
+                pass);) {
+            conn = con;
+            return true;
+        }
+        catch (SQLException se) {
+            return false;
+        }
+    }
+
+    public Connection getConnection() {
+        return conn;
+    }
+
+    public boolean closeConnection() {
+        try {
+            conn.close();
+        }
+        catch (SQLException se) {
+        }
+        return false;
+    }
+}

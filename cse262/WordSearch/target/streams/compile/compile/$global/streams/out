@@ -1,0 +1,7 @@
+[0m[[0m[31merror[0m] [0m[0m/Users/jake/Documents/cse262/WordSearch/src/main/scala/Puzzle.scala:55:76: identifier expected but 'val' found.[0m
+[0m[[0m[31merror[0m] [0m[0m  def checkAndPlace(idir: Int, row:Int, col:Int, word: String, order: Int, val grid: Array[Array[Char]], BLANK: Char): Boolean = {[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/jake/Documents/cse262/WordSearch/src/main/scala/Puzzle.scala:94:1: ':' expected but '}' found.[0m
+[0m[[0m[31merror[0m] [0m[0m}[0m
+[0m[[0m[31merror[0m] [0m[0m^[0m
+[0m[[0m[31merror[0m] [0m[0mtwo errors found[0m
